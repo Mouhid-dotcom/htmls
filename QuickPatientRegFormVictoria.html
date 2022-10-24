@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/md/images/favicon.ico">
+
+    <title>Rovermd </title>
+    <link rel="stylesheet" href="/md/main/css/vendors_css.css">
+
+    <!-- Style-->
+    <link rel="stylesheet" href="/md/main/css/skin_color.css">
+    <link href="/md/main/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
+   
+</head>
+
+<Style>
+    #ConfirmEmailPara {
+        display: none;
+    }
+
+    #CountryDiv {
+        display: none;
+    }
+
+    .box-body {
+        padding: 1.5rem 1.5rem;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        border-radius: 10px;
+    }
+label{
+	color:black;
+}
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -5px;
+        margin-left: -5px;
+    }
+
+    .box {
+        position: relative;
+        margin-bottom: 10px;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 0px;
+        -webkit-transition: .5s;
+        transition: .5s;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        box-shadow: 0px 2px 5px 0px rgba(19, 23, 38, 0.05);
+    }
+
+    .box-footer {
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
+        padding: 1.5rem 1.5rem;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        box-shadow: none;
+        border-color: #688cb4;
+        height: auto;
+    }
+
+    body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: left;
+        background-color: #fff;
+    }
+
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+        color: #7792b1;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        font-family: "IBM Plex Sans", sans-serif;
+        line-height: 1.5;
+        background-color: #f4f5f9;
+    }
+</style>
+
+
+<body class="hold-transition light-skin sidebar-mini theme-primary" onload="HideReasonVisit()">
+
+<div class="wrapper">
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <form method="post" action="/md/md.QuickReg" id="QuickRegForm" onsubmit="return validate()">
+                    <div class="box">
+                        <div class="box-header">
+                            <h4 class="box-title">Quick Registration</h4>
+                        </div>
+                        <div class="box-body">
+
+
+                            <div class="form-header">
+                                <h3>Registration</h3>
+                            </div>
+                            <br>
+                            <p>Please fill with your details</p>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Title  </label>
+                                        <select class="form-control" id="Title" name="Title"  onchange="disableGenderOption(this.value);">
+                                            <option value="" selected disabled>Select Title</option>
+                                            <option value="Mr">Mr.</option>
+                                            <option value="Miss">Miss</option>
+                                            <option value="Mrs">Mrs</option>
+                                            <option value="Ms">Ms</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="">First Name * </label>
+                                        <input type="text" placeholder=" " class="form-control" id="FirstName" name="FirstName" onblur="CheckPatient();" required onkeypress="return alphaOnly(event);">
+                                     </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="">Last Name *</label>
+                                        <input type="text" placeholder="" class="form-control" id="LastName" name="LastName" onblur="CheckPatient();" required onkeypress="return alphaOnly(event);">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        ` <label for="">Middle Initial </label>
+                                        <input type="text" placeholder="" class="form-control" id="MiddleInitial" name="MiddleInitial" maxlength="1" onkeypress="return alphaOnly(event);">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Marital Status </label>
+                                        <select class="form-control" id="MaritalStatus" name="MaritalStatus">
+                                            <option value="Single">Single</option>
+                                            <option value="Mar">Mar</option>
+                                            <option value="Div">Div</option>
+                                            <option value="Sep">Sep</option>
+                                            <option value="Wid">Wid</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Date of Birth * </label>
+                                       <input type="date" placeholder="" class="form-control" id="DOB" name="DOB"
+                                               onchange="getAge(this.value);" required min="1900-01-01" max="@@Date@@">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>Age * </label>
+                                        <input type="text" class="form-control" id="Age" name="Age" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Gender *</label>
+                                        <select class="form-control" id="gender" name="gender"
+                                                required>
+                                            <option value="" selected disabled>Select Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Reason For Visit *</label>
+                                        <select class="form-control" id="ReasonVisitSelect" name="ReasonVisitSelect"
+                                                onchange="DisplayReasonVisitField(this.value);" required>
+                                                @@ReasonVisitSelector@@
+                                            <!-- <option value="">Select Reason of Visit</option>
+                                            <option value="COVID">COVID Testing</option>
+                                            <option value="Others">Others</option> -->
+                                        </select>
+                                     </div>
+                                </div>
+
+                                <div class="col-md-3" id="ReasonVisitDiv">
+                                    <div class="form-group">
+                                        <label>Reason For Visit *</label>
+                                        <input type="text" placeholder="" class="form-control" id="ReasonVisit"
+                                               name="ReasonVisit">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Email </label>
+                                        <input type="text" placeholder="" class="form-control mixed" id="Email" name="Email"
+                                               onchange="ConfirmEmailFn();"  onInput="ValidateEmail(this)">
+                                               <div class="Email-help-block"></div>	
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Confirm Email <font color="red" size="2" id="ConfirmEmailPara">*MISMATCH*</font></label>
+                                        <input type="text" placeholder="" class="form-control mixed" id="ConfirmEmail"
+                                               name="ConfirmEmail" onchange="ConfirmEmailFn();"  onInput="ValidateEmail(this)">
+                                               <div class="ConfirmEmail-help-block"></div>	
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>SSN </label>
+                                        <input type="text" placeholder="" class="form-control num" id="SSN" name="SSN"
+                                               maxlength="9" onkeypress="return isNumberKey(event)"
+                                               onchange="ValidateSSN3(this.value,this.id)">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Phone Number * </label>
+                                        <input type="text" class="form-control num" id="PhNumber" name="PhNumber"
+                                               maxlength="10" onkeypress="return isNumberKey(event)"
+                                               onchange="ValidatePhoneNumber(this.value,this.id);" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Select Physician </label>
+                                        <select class="form-control" id="DoctorName" name="DoctorName"
+                                                >
+                                            <option value="-1">Select Physician</option>
+                                            @@DoctorList@@
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Enter Your Address Here</label>
+                                        <input type="text" placeholder="" class="form-control mixed" id="autocomplete"
+                                               name="autocomplete" onFocus="geolocate()">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Street Address 1 *</label>
+                                        <input type="text" placeholder="" class="form-control mixed" id="Address"
+                                               name="Address" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Street Address 2</label>
+                                        <input type="text" placeholder="" class="form-control mixed" id="Address2"
+                                               name="Address2">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>City * </label>
+                                        <input type="text" placeholder="" class="form-control" id="locality" name="City"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>State *</label>
+                                        <input type="text" placeholder="" class="form-control"
+                                               id="administrative_area_level_1" name="State" maxlength="2" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>County *</label>
+                                        <input type="text" placeholder="" class="form-control"
+                                               id="administrative_area_level_2" name="County" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-2" id="CountryDiv">
+                                    <div class="form-group">
+                                        <label>Country </label>
+                                        <input type="text" placeholder="" class="form-control" id="country"
+                                               name="Country">
+                                    </div>
+                                </div>
+                               
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Zip Code * </label>
+                                        <input type="text" placeholder="" class="form-control mixed" id="postal_code"
+                                               name="ZipCode" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Worker's Comp Policy *</label>
+                                        <div class="controls">
+                                            <fieldset>
+                                                <input name="WorkersCompPolicyChk" type="radio"
+                                                       id="WorkersCompPolicy_Yes" value="1" required>
+                                                <label for="WorkersCompPolicy_Yes">Yes</label>
+                                            </fieldset>
+                                            <fieldset>
+                                                <input name="WorkersCompPolicyChk" type="radio"
+                                                       id="WorkersCompPolicy_No" value="0">
+                                                <label for="WorkersCompPolicy_No">No</label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Motor Vehicle Accident *</label>
+                                        <div class="controls">
+                                            <fieldset>
+                                                <input name="MotorVehicleAccidentChk" type="radio"
+                                                       id="MotorVehicleAccidentChk_Yes" value="1" required>
+                                                <label for="MotorVehicleAccidentChk_Yes">Yes</label>
+                                            </fieldset>
+                                            <fieldset>
+                                                <input name="MotorVehicleAccidentChk" type="radio"
+                                                       id="MotorVehicleAccidentChk_No" value="0">
+                                                <label for="MotorVehicleAccidentChk_No">No</label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Do you have Health Insurance ? *</label>
+                                        <div class="controls">
+                                            <fieldset>
+                                                <input name="HealthInsuranceChk" type="radio"
+                                                       id="HealthInsuranceChk_Yes" value="1" required>
+                                                <label for="HealthInsuranceChk_Yes">Yes</label>
+                                            </fieldset>
+                                            <fieldset>
+                                                <input name="HealthInsuranceChk" type="radio" id="HealthInsuranceChk_No"
+                                                       value="0">
+                                                <label for="HealthInsuranceChk_No">No</label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <input type="hidden" id="ClientId" name="ClientId" value="Victoria-ER">
+                            <input type="hidden" id="ClientIndex" name="ClientIndex" value="@@ClientIndex@@">
+                            <input name="UserId" id="UserId" type="hidden" value="@@UserId@@">
+                            <input name="street_number" id="street_number" type="hidden" value="@@UserId@@">
+                            <input name="route" id="route" type="hidden" value="@@UserId@@">
+
+                            <br><br>
+                            <div class="d-table w-100">
+                                <div class="d-table-cell tac">
+                                    <button type="submit" class="btn btn-primary" id="ActionID" name="ActionID"
+                                            value="Victoria_2">Submit
+                                    </button>
+                                </div>
+                            </div>
+                            <br><br>
+                        </div>
+
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+        
+    </section>
+    
+</div>
+
+ <script src="/md/main/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="/md/main/js/Address.js"></script>
+    <script src="/md/main/js/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+
+    // function getAge(dateString) {
+    //     var today = new Date();
+    //     var dateString = dateString.split("/").reverse().join("/");
+    //     //alert(dateString);
+    //     var birthDate = new Date(dateString);
+
+
+    //     var age = today.getFullYear() - birthDate.getFullYear();
+
+    //     var m = today.getMonth() - birthDate.getMonth();
+
+    //     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+
+    //         age--;
+
+    //     }
+	// 	CheckPatient();
+    //     document.getElementById("Age").value = age;
+    //     //return age;
+    //     //alert(age);
+    // }
+    function getAge(dateString) {
+        
+var birthDate = new Date(dateString);
+	var dy = birthDate.getFullYear();
+	var dm = birthDate.getMonth() + 1;
+	var dd = birthDate.getDate();
+
+	var today = new Date();
+	var ty = today.getFullYear();
+	var tm = today.getMonth() + 1;
+	var td = today.getDate();
+
+	let diff_y, diff_m, diff_d;
+
+	if (tm > dm) {
+		diff_y = ty - dy;
+
+		diff_m = tm - dm;
+	} else if (tm < dm) {
+		diff_y = ty - dy - 1;
+		if(diff_y<0){
+			swal('Invalid date selected','','error');
+			document.getElementById("Age").value = "";
+			document.getElementById("Age").focus();
+			return;
+		}
+		diff_m = 12 - dm + tm;
+	} else if (tm == dm) {
+		diff_y = ty - dy;
+		diff_m = tm - dm;
+		diff_d = td - dd;
+		if (diff_d < 0) {
+			diff_y--;
+			diff_m = 12 - 1;
+		}
+	}
+
+	if (diff_y < 1) {
+		diff_y = diff_m + " mos";
+	}
+
+	document.getElementById("Age").value = diff_y;
+        CheckPatient();
+/*
+	var today = new Date();
+	var dateString = dateString.split("/").reverse().join("/");
+	//alert(dateString);
+	var birthDate = new Date(dateString);
+	
+	
+
+	var age = today.getFullYear() - birthDate.getFullYear();
+
+	var m = today.getMonth() - birthDate.getMonth();
+
+	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+
+		age--;
+
+	}
+	CheckPatient();
+	document.getElementById("Age").value = age;
+	*/
+	//return age;
+	//alert(age);
+}
+    function HideReasonVisit() {
+        document.getElementById("ReasonVisitDiv").style.display = "none";
+    }
+
+    function DisplayReasonVisitField(str) {
+        if (str != "COVID") {
+            document.getElementById("ReasonVisitDiv").style.display = "block";
+            document.getElementById("ReasonVisit").value = "";
+            document.getElementById("ReasonVisit").readOnly = false;
+            document.getElementById("ReasonVisit").required = true;
+
+        } else if (str == "COVID") {
+            document.getElementById("ReasonVisitDiv").style.display = "block";
+            document.getElementById("ReasonVisit").value = "COVID Testing";
+            document.getElementById("ReasonVisit").readOnly = true;
+        }
+    }
+
+    function ConfirmEmailFn() {
+        var Email = document.getElementById("Email").value;
+        var ConfirmEmail = document.getElementById("ConfirmEmail").value;
+        if (Email == ConfirmEmail) {
+            // <!-- alert("matched"); -->
+            document.getElementById("ConfirmEmailPara").style.display = "none";
+        } else {
+            // <!-- alert("Mismatched"); -->
+            document.getElementById("ConfirmEmailPara").style.display = "block";
+        }
+
+    }
+
+</script>
+<script>
+    function ValidateNew() {
+        //Initial Info Variable
+        var gender = document.getElementById("gender").value;
+        var Title = document.getElementById("Title").value;
+        var FirstName = document.getElementById("FirstName").value;
+        var LastName = document.getElementById("LastName").value;
+        var DOB = document.getElementById("DOB").value;
+        var ReasonVisitSelect = document.getElementById("ReasonVisitSelect").value;
+        var ReasonVisit = document.getElementById("ReasonVisit").value;
+        var Email = document.getElementById("Email").value;
+        var ConfirmEmail = document.getElementById("ConfirmEmail").value;
+        var SSN = document.getElementById("SSN").value;
+        var PhNumber = document.getElementById("PhNumber").value;
+        var street_number = document.getElementById("street_number").value;
+        var locality = document.getElementById("locality").value;
+        var administrative_area_level_1 = document.getElementById("administrative_area_level_1").value;
+        var postal_code = document.getElementById("postal_code").value;
+
+        if (gender == "-1") {
+            alert("Oops... Please Select Proper gender. error");
+            return false;
+        }
+        if (Title == "-1") {
+            alert("Oops... Please Select Proper Title. error");
+            return false;
+        }
+        if (Title == "") {
+            alert("Oops... Please Select Proper Title. error");
+            return false;
+        }
+        if (FirstName == "") {
+            alert("Oops... Please Enter First Name. error");
+            return false;
+        }
+        if (LastName == "") {
+            alert("Oops... Please Enter Last Name. error");
+            return false;
+        }
+        if (DOB == "") {
+            alert("Oops... Please Enter Date of Birth. error");
+            return false;
+        }
+        if (ReasonVisitSelect == "-1") {
+            alert("Oops... Please Select Reason of Visit. error");
+            return false;
+        }
+        if (ReasonVisitSelect == "") {
+            alert("Oops... Please Select Reason of Visit. error");
+            return false;
+        }
+        if (ReasonVisitSelect == "Others") {
+            //alert(ReasonVisitSelect);
+            if (ReasonVisit == "") {
+                alert("Oops... Please Enter Reason of Visit. error");
+                return false;
+            }
+        }
+        if (Email == "") {
+            alert("Oops... Please Enter Email. error");
+            return false;
+        }
+        if (ConfirmEmail == "") {
+            alert("Oops... Please Enter Confirm Email. error");
+            return false;
+        }
+        if (SSN == "") {
+            alert("Oops... Please Enter SSN. error");
+            return false;
+        }
+        if (PhNumber == "") {
+            alert("Oops... Please Enter PhNumber. error");
+            return false;
+        }
+        if (street_number == "") {
+            alert("Oops... Please Enter Street Address 1. error");
+            return false;
+        }
+        if (locality == "") {
+            alert("Oops... Please Enter Proper City. error");
+            return false;
+        }
+        if (administrative_area_level_1 == "") {
+            alert("Oops... Please Enter Proper State. error");
+            return false;
+        }
+        if (postal_code == "") {
+            alert("Oops... Please Enter Proper ZipCode. error");
+            return false;
+        }
+
+        const rbs = document.querySelectorAll('input[name="WorkersCompPolicyChk"]');
+        let WorkersCompPolicyChk;
+        for (const rb of rbs) {
+            if (rb.checked) {
+                WorkersCompPolicyChk = rb.value;
+                break;
+            }
+        }
+        //alert("WorkersCompPolicyChk---: "+WorkersCompPolicyChk);
+        if (WorkersCompPolicyChk != "0" && WorkersCompPolicyChk != "1") {
+            alert("Oops... Please Check Worker Comp Policy Yes or No. error");
+            return false;
+        }
+        const rbs1 = document.querySelectorAll('input[name="MotorVehicleAccidentChk"]');
+        let MotorVehicleAccidentChk;
+        for (const rb of rbs1) {
+            if (rb.checked) {
+                MotorVehicleAccidentChk = rb.value;
+                break;
+            }
+        }
+        if (MotorVehicleAccidentChk != "0" && MotorVehicleAccidentChk != "1") {
+            alert("Oops... Please Check Motor VehicleAccident Yes or No. error");
+            return false;
+        }
+        const rbs2 = document.querySelectorAll('input[name="HealthInsuranceChk"]');
+        let HealthInsuranceChk;
+        for (const rb of rbs2) {
+            if (rb.checked) {
+                HealthInsuranceChk = rb.value;
+                break;
+            }
+        }
+        if (HealthInsuranceChk != "0" && HealthInsuranceChk != "1") {
+            alert("Oops... Please Check Health Insurance Yes or No. error");
+            return false;
+        }
+
+    }
+</script>
+
+<script>
+    function Validate9Digit() {
+        var SSN = document.getElementById("SSN").value;
+        if (SSN.length == 9) {
+            document.getElementById("SSN").value = SSN.substring(0, 3) + "-" + SSN.substring(3, 5) + "-" + SSN.substring(5, 9);
+
+        } else {
+            sweetAlert("Oops...", "Please Fill Proper 9 digit SSN", "error");
+        }
+    }
+
+    // function ValidatePhoneNumber(PhNumber, Fieldid) {
+    //     if (PhNumber != "") {
+    //         if (PhNumber.length != 10) {
+    //             alert("Please Enter Correct 10 Digits Number");
+    //         } else {
+    //             document.getElementById(Fieldid).value = PhNumber.substring(0, 3) + "-" + PhNumber.substring(3, 6) + "-" + PhNumber.substring(6, 10);
+    //             //xxx-xxx-xxxx
+    //         }
+    //     }
+    // }
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+
+    function CheckPatient() {
+        var FirstName = document.getElementById("FirstName").value;
+        var LastName = document.getElementById("LastName").value;
+        var ClientIndex = document.getElementById("ClientIndex").value;
+        var DOB = document.getElementById("DOB").value;
+
+        if (FirstName != "" && LastName != "" && DOB != "") {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var mySplitResult = xmlhttp.responseText.split("|");
+                    //alert("Patient Already Exist with MRN:-" + mySplitResult[0]);
+                    if (mySplitResult[1] > 0) {
+                        //swal("warning", "This Patient is Already Found with MRN: "+mySplitResult[0] +" Please Search Old Patient then add new Visit if needed. Thank You!!", "warning");
+                        //setInterval('window.location.reload()', 6000);
+                        swal({
+                            title: "MRN : " + mySplitResult[0],
+                            text: "This Patient is Already Found with MRN: " + mySplitResult[0] + " Please Go to Search Old Patient then add new Visit if needed. Thank You!!",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "OK",
+                            // <!-- cancelButtonText: "No ", -->
+                            closeOnConfirm: false,
+                            // <!-- closeOnCancel: false -->
+                        }, function (isConfirm) {
+                            if (isConfirm) {
+                                //return false;
+                                //swal("Success", "Please Continue with the FORM", "success");
+                                setInterval('window.location.reload()', 2000);
+                            }
+                            else {
+                                //return false;
+                                swal("Cancelled", "Your record is not updated", "error");
+                                setInterval('window.location.reload()', 2000);
+
+                            }
+                        });
+                    }
+
+                }
+            }
+            xmlhttp.open("POST", "/md/md.PatientReg2?ActionID=CheckPatient&FirstName=" + FirstName + "&LastName=" + LastName + "&DOB=" + DOB + "&ClientIndex=" + ClientIndex, true);
+            console.log("/md/md.PatientReg2?ActionID=CheckPatient&FirstName=" + FirstName + "&LastName=" + LastName + "&DOB=" + DOB + "&ClientIndex=" + ClientIndex);
+            xmlhttp.send();
+        }
+    }
+
+
+</script>
+<script>
+    $(document).ready(function () {
+
+
+        $("input").bind(
+          "input",
+          function (event) {
+            var $this = $(this);
+			// alert($("#" + $this[0].id + "").attr('type'));
+           
+			if( $("#" + $this[0].id + "").attr('type') != "radio" && $("#" + $this[0].id + "").attr('type') != "checkbox" &&  $("#" + $this[0].id + "").attr('type') != "date"){
+            var regexFormNum = new RegExp(/^[0-9]*$/);
+            var regexForAlpha = new RegExp(/^[A-Za-z \-']*$/);
+            var regexForAlphaNumeric = new RegExp(/^[0-9A-Za-z \-'@]*$/);
+            var reg;
+            var regForReplace;
+            var msg;
+            var ClassName = $("#" + $this[0].id + "").attr("class");
+            if (ClassName.includes("num")) {
+              reg = regexFormNum;
+              regForReplace = new RegExp(/[^0-9\-]/g);
+              msg = "Can't Accept Mixed Charater. Numbers Only";
+            } else if (ClassName.includes("mixed")) {
+                reg = regexForAlphaNumeric;
+		regForReplace = new RegExp(/[^a-zA-Z@ '.,0-9#\-]/g);
+		} else {
+		reg = regexForAlpha;
+		regForReplace = new RegExp(/[^a-zA-Z '.\-]/g);
+              // `/[^a-zA-Z -']/g`;
+
+              msg = "Can't Accept Mixed Charater. Alphabets Only";
+            }
+
+            var val = $this.val();
+            if (reg.test(val) == true) {
+              $("#" + $this[0].id + "").val(val);
+            } else {
+              // val[val.length()-1]="";
+              $("#" + $this[0].id + "").val(val.replace(regForReplace, ""));
+              event.preventDefault();
+              return false;
+
+              // alert(msg);
+              // $("#"+$this[0].id+"").val('');
+            }
+
+            // document.getElementById("Registration").innerHTML="Hello world";
+		}
+          }
+        );
+
+
+
+        $(window).keydown(function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+
+//     <!-- document.getElementById("QuickRegForm").addEventListener('submit',(e)=>{ -->
+//     <!-- var error = []; -->
+//     <!-- var DateElements = $('input[type=date]'); -->
+//     <!-- for (var i =0; DateElements.length > i;  i++) { -->
+//         <!-- if(!validatedate(DateElements[i].value)){ -->
+//             <!-- error.push(`${DateElements[i].name} is Invalid Date`); -->
+//             <!-- DateElements[i].value=""; -->
+//             <!-- document.getElementById("Age").value=""; -->
+//             <!-- DateElements[i].focus(); -->
+//             <!-- e.preventDefault(); -->
+//             <!-- alert(error.join(", \n ")); -->
+//             <!-- return false; -->
+//         <!-- } -->
+//     <!-- } -->
+// <!-- }) -->
+
+
+function alphaOnly(event) {
+  var key = event.keyCode;
+  console.log("\n Keycode -> "+key);
+  if (key > 33 && (key < 65 || key > 90) && (key < 97 || key > 122) && key!=39) {
+          // alert("Enter letters only.");
+          return false;
+       }
+       return true;
+};
+
+
+function disableGenderOption(option) {
+    // body...
+    if(option=="Mr"){
+        console.log($("#gender")[0][2].disabled);
+        $("#gender")[0][2].disabled = true;
+        $("#gender")[0][1].disabled = false;
+        $("#gender").val("male")
+
+    }else if(option!=""){
+        console.log($("#gender")[0][1].disabled);
+        $("#gender")[0][1].disabled = true;
+        $("#gender")[0][2].disabled = false;
+        $("#gender").val("female")
+    }
+    // document.getElementById("gender").value="";
+}
+
+
+
+
+
+function ValidateEmail(inputText) {
+		
+        if (
+          document
+            .getElementsByClassName(inputText.name + "-help-block")[0]
+            .hasChildNodes()
+        ) {
+          document
+            .getElementsByClassName(inputText.name + "-help-block")[0]
+            .removeChild(
+              document.getElementsByClassName(inputText.name + "-help-block")[0]
+                .lastChild
+            );
+          // console.log(requiredElements[i].name + "-help-block'S child exists");
+        }
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (inputText.value.trim() == "") {
+          return true;
+        } else {
+          if (inputText.value.match(mailformat)) {
+            return true;
+          } else {
+            var first = document.createElement("H6");
+            var text = document.createTextNode("invalid email");
+            first.style.color = "red";
+            first.appendChild(text);
+            document
+              .getElementsByClassName(inputText.name + "-help-block")[0]
+              .appendChild(first);
+            // alert("Please provide valid email ");
+            inputText.focus();
+            // alert("You have entered an invalid email address!");
+            
+            inputText.focus();
+            return false;
+          }
+        }
+      }
+
+
+
+
+
+	  function ValidateSSN3(PhNumber,Fieldid){
+	
+	var phlength ;
+	var dashCount = PhNumber.split("-").length -1;
+	// PhNumber= PhNumber.replaceAll("-","");
+	if(dashCount == 1){
+		$("#"+Fieldid).attr("maxlength","10");
+		phlength = 10;
+	}else if(dashCount == 2){
+		$("#"+Fieldid).attr("maxlength","11");
+		phlength = 11;
+	}else{
+		$("#"+Fieldid+"").attr('maxlength','9');
+		phlength = 9;
+	}
+
+	if(PhNumber != ""){
+		
+		if(PhNumber.length != phlength){
+			alert("Please Enter Correct 9 Digits Number");
+      $("#"+Fieldid+"").focus();
+      return false;
+		}else{
+			
+			PhNumber= PhNumber.replaceAll("-","");
+			document.getElementById(Fieldid).value = PhNumber.substring(0,3) + "-" + PhNumber.substring(3,5) + "-" + PhNumber.substring(5,9);
+			//xxx-xxx-xxxx
+		}
+	}
+}
+
+// $("input").on('paste', function(event) {
+
+// 	var $this = $(this);
+// 	var regexFormNum = new RegExp(/^[0-9]*$/);
+// 	var regexForAlpha = new RegExp(/^[A-Za-z -']*$/);
+// 	var regexForAlphaNumeric = new RegExp(/^[0-9A-Za-z -']*$/);
+// 	var reg;
+// 	var msg;
+//  var ClassName = $("#"+$this[0].id+"").attr("class");
+//  if (ClassName.includes("num")){
+// reg = regexFormNum;
+// msg = "Can't Accept Mixed Charater. Numbers Only";
+//  }else if(ClassName.includes("mixed")){
+// 	reg =regexForAlphaNumeric;
+//  }else{
+// 	reg =regexForAlpha;
+// 	msg = "Can't Accept Mixed Charater. Alphabets Only";
+//  }
+// 	setTimeout(function(){
+		
+//             var val = $this.val();
+//          	 if(reg.test(val) == true){
+// 				$("#"+$this[0].id+"").val(val);
+// 			}else{
+// 				alert(msg);
+// 				$("#"+$this[0].id+"").val('');
+// 			} 
+//         },0);
+
+// });
+
+function validate(){
+
+    if($("#Age").val()=="")
+            {   $("#Age").focus();
+                swal("Error","Please enter Age","error");
+                return false;
+            }
+
+	if($("#PhNumber").val().length > 1 ){
+  if( ValidatePhoneNumber($("#PhNumber").val(),$("#PhNumber").attr('id')) == false)
+    return false;
+}
+
+
+if($("#SSN").val().length > 1 ){
+  if( ValidateSSN3($("#SSN").val(),$("#SSN").attr('id'))  == false)
+    return false;
+
+}
+
+ if (!ValidateEmail(document.getElementById("Email"))) 
+     return false;
+
+     if($("#Email").val() != $("#ConfirmEmail").val()){
+	$("#Email").focus();
+	swal("Oops..","Email Mismatch","error");
+	return false;
+}
+
+   var requiredElements = $("input,textarea,select").filter(
+				"[required]:visible"
+			);
+			for (var i = 0; i < requiredElements.length; i++) {
+				if (isEmpty($("#" + requiredElements[i].id + "").val()) == true) {
+					$("#" + requiredElements[i].id + "").focus();
+					// alert(requiredElements[i].name + "Field is Empty!");
+					swal("Oops..",""+requiredElements[i].name +"Field is Empty!","error");
+					$("#" + requiredElements[i].id + "").val('');
+					
+					return false;
+				}
+			}
+
+}
+function isEmpty(str) {
+
+return str == null || str.replaceAll(" ", "").length <= 0;
+}
+function ValidatePhoneNumber(PhNumber,Fieldid){
+	
+	
+	var phlength ;
+	var dashCount = PhNumber.split("-").length -1;
+	// PhNumber= PhNumber.replaceAll("-","");
+	if(dashCount == 1){
+		$("#"+Fieldid).attr("maxlength","11");
+		phlength = 11;
+	}else if(dashCount == 2){
+		$("#"+Fieldid).attr("maxlength","12");
+		phlength = 12;
+	}else{
+		$("#"+Fieldid+"").attr('maxlength','10');
+		phlength = 10;
+	}
+
+	if(PhNumber != ""){
+		
+		if(PhNumber.length != phlength){
+			alert("Please Enter Correct 10 Digits Number");
+      $("#"+Fieldid+"").focus();
+      return false;
+		}else{
+			
+			PhNumber= PhNumber.replaceAll("-","");
+			document.getElementById(Fieldid).value = PhNumber.substring(0,3) + "-" + PhNumber.substring(3,6) + "-" + PhNumber.substring(6,10);
+			//xxx-xxx-xxxx
+		}
+	}
+}
+</script>
+
+</body>
+</html>

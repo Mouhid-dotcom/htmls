@@ -1,0 +1,2693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/orange/images/favicon.ico">
+
+    <title>Patient Reg Form | Rovermd</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+		<!-- Vendors Style-->
+	<!-- <link rel="stylesheet" href="https://app.rovermd.com:8443/md/main/css/vendors_css.css"> -->
+	<link rel="stylesheet" href="/md/main/css/vendors_css.css">
+	
+	
+	<link href="/md/main/css/plugins/datapicker/datepicker3.css" rel="stylesheet" type="text/css">
+	<link href="/md/main/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css">	
+	
+	<script src="/md/main/js/plugins/datapicker/bootstrap-datepicker.js"></script>	<script src="/md/main/js/plugins/daterangepicker/daterangepicker.js"></script>
+	<script src="/md/main/js/Address.js"></script>
+	<script src="/md/main/js/plugins/sweetalert/sweetalert.min.js"></script>
+	<script src="/md/main/js/plugins/select2/select2.full.min.js"></script>
+
+</head>
+
+<style>
+<!-- .box-body {
+    padding: 1.5rem 1.5rem;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    border-radius: 10px;
+}
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+}
+.box {
+    position: relative;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 0px;
+    -webkit-transition: .5s;
+    transition: .5s;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    box-shadow: 0px 2px 5px 0px rgba(19, 23, 38, 0.05);
+}
+.box-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+    padding: 1.5rem 1.5rem;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.form-control {
+    border-radius: 10px;
+    box-shadow: none;
+    border-color: #688cb4;
+    height: auto;
+}body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: #7792b1;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    font-family: "IBM Plex Sans", sans-serif;
+    line-height: 1.5;
+    background-color: #f4f5f9;
+} -->
+#ConfirmEmailPara
+{
+	display: none;
+}
+/* <!-- #TravellingChkDiv -->
+<!-- { -->
+	<!-- display: none; -->
+<!-- } --> */
+#OdessaBundleInfo
+{
+	display: none;
+}
+#Section_2D
+{
+	display: none;
+}
+#fade {
+            display: block;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 3600px;
+            background-color: #ababab;
+            z-index: 100;
+            -moz-opacity: 0.8;
+            opacity: 0.7;
+            filter: alpha(opacity=80);
+        }
+
+        #loading {
+            display: block;
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            width: 200px;
+            height: 200px;
+            padding: 30px 15px 0px;
+            border: 3px solid #ababab;
+            box-shadow: 1px 1px 10px #ababab;
+            border-radius: 20px;
+            background-color: white;
+            z-index: 1002;
+            text-align: center;
+            overflow: auto;
+        }
+@@Style@@
+</style>
+<script type="text/javascript">
+function InsuranceShow(checkbox){
+	if(checkbox.checked != true){			
+		document.getElementById("InsuranceDiv").style.display = "none";
+		
+		document.getElementById("WorkersCompPolicyY").required=false;
+		document.getElementById("MotorVehAccidentY").required=false;	
+		document.getElementById("PriInsuranceName").required=false;	
+		// <!-- document.getElementById("MemId").required=false;	 -->
+		// <!-- document.getElementById("GrpNumber").required=false;	 -->
+		// <!-- document.getElementById("PrimaryDOB").required=false;	 -->
+		// <!-- document.getElementById("PatientRelationtoPrimary").required=false;	 -->
+		// <!-- if(ClientIndex == 11){ -->
+		// 	<!-- document.getElementById("PriInsurance").required = false; -->
+		// <!-- } -->
+		
+	}else{
+		document.getElementById("InsuranceDiv").style.display = "inline";
+		
+		document.getElementById("WorkersCompPolicyY").required=true;
+		document.getElementById("MotorVehAccidentY").required=true;	
+		document.getElementById("PriInsuranceName").required=true;	
+		// <!-- document.getElementById("MemId").required=true;	 -->
+		// <!-- document.getElementById("GrpNumber").required=true;	 -->
+		// <!-- document.getElementById("PrimaryDOB").required=true;	 -->
+		// <!-- document.getElementById("PatientRelationtoPrimary").required=true;	 -->
+		// <!-- if(ClientIndex == 11){ -->
+		// 	<!-- document.getElementById("PriInsurance").required = true; -->
+		// <!-- } -->
+	}		
+}
+function showSection2D(){
+	//$( "#Section_2D" ).show();
+	document.getElementById("Section_2D").style.display = "inline";
+}
+function showSection3D(){
+	//$( "#Section_2D" ).show();
+	var ClientIndex = document.getElementById("ClientIndex").value;
+	if(ClientIndex == 27 || ClientIndex == 29){
+		document.getElementById("Section_3D_Frontline").style.display = "inline";		
+	}else{
+		document.getElementById("Section_3D").style.display = "inline";
+	}
+}
+
+function COVIDPositveCheck(value){
+	if(value == 1){
+		document.getElementById("CovidPositiveDateDiv").style.display = "block";
+		document.getElementById("CovidPositiveDate").required = true;		
+	}else{
+		document.getElementById("CovidPositiveDateDiv").style.display = "none";
+		document.getElementById("CovidPositiveDate").required = false;	
+	}
+}
+
+function TravllingChk(value){
+	if(value == 1){
+		document.getElementById("TravellingChkDiv").style.display = "inline";
+		// document.getElementById("TravelWhen").required = true;
+		// document.getElementById("TravelWhere").required = true;
+		// document.getElementById("TravelHowLong").required = true;
+	}else{
+		document.getElementById("TravellingChkDiv").style.display = "none";
+		// document.getElementById("TravelWhen").required = false;
+		// document.getElementById("TravelWhere").required = false;
+		// document.getElementById("TravelHowLong").required = false;
+	}
+}
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+}
+
+function Validate9Digit(){
+	var SSN = document.getElementById("SSN").value;
+	if(SSN.length == 9 ){		
+		document.getElementById("SSN").value = SSN.substring(0,3) + "-" + SSN.substring(3,5) + "-" + SSN.substring(5,9);
+		
+	}else{
+		sweetAlert("Oops...", "Please Fill Proper 9 digit SSN", "error");
+	}		
+}
+// function ValidatePhoneNumber(PhNumber,Fieldid){
+// 	if(PhNumber != ""){
+// 		if(PhNumber.length != 10){
+// 			alert("Please Enter Correct 10 Digits Number");
+// 		}else{
+// 			document.getElementById(Fieldid).value = PhNumber.substring(0,3) + "-" + PhNumber.substring(3,6) + "-" + PhNumber.substring(6,10);
+// 			//xxx-xxx-xxxx
+// 		}
+// 	}
+// }
+function ExposedChk(value) {
+			if (value == 1) {
+				document.getElementById("CovidExposedDiv").style.display = "inline";
+				// <!-- document.getElementById("CovidExpWhen").required = true; -->
+			} else {
+				document.getElementById("CovidExposedDiv").style.display = "none";
+				// <!-- document.getElementById("CovidExpWhen").required = true; -->
+			}
+		}
+
+
+</script>
+
+<script>
+function getAge(dateString) {
+	//var dateString = dateString.split("/");//.reverse().join("/");
+	//dateString = dateString[2] + "/" + dateString[0] + "/" + dateString[1];
+	var birthDate = new Date(dateString);
+	var dy = birthDate.getFullYear();
+	var dm = birthDate.getMonth() + 1;
+	var dd = birthDate.getDate();
+
+	var today = new Date();
+	var ty = today.getFullYear();
+	var tm = today.getMonth() + 1;
+	var td = today.getDate();
+
+	let diff_y, diff_m, diff_d;
+
+	if (tm > dm) {
+		diff_y = ty - dy;
+
+		diff_m = tm - dm;
+	} else if (tm < dm) {
+		diff_y = ty - dy - 1;
+		if(diff_y<0){
+			swal('Invalid date selected','','error');
+			document.getElementById("Age").value = "";
+			document.getElementById("DOB").focus();
+			return;
+		}
+		diff_m = 12 - dm + tm;
+	} else if (tm == dm) {
+		diff_y = ty - dy;
+		diff_m = tm - dm;
+		diff_d = td - dd;
+		if (diff_d < 0) {
+			diff_y--;
+			diff_m = 12 - 1;
+		}
+	}
+
+	if (diff_y < 1) {
+		diff_y = diff_m + " mos";
+	}
+
+	document.getElementById("Age").value = diff_y;
+
+	// if((age==0 || age == 1) && (tm < bm || tm > bm) ){
+	// 	if (tm < bm) {
+	// 		document.getElementById("Age").value = (tm - bm + 12) + ' mos';
+	// 	} else if (tm > bm){
+	// 		document.getElementById("Age").value = (tm - bm) + ' mos'
+	// 	}
+	// }else{
+	// 	var m = today.getMonth() - birthDate.getMonth();
+	// 	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+
+	// 		age--;
+
+	// 	}
+	// 	CheckPatient();
+	// 	document.getElementById("Age").value = age;
+	// }
+
+	
+	//document.getElementById("DOB").value = dateString.replace("/", "-").replace("/", "-");
+}
+
+function isNumberKey(evt)
+{
+	var charCode = (evt.which) ? evt.which : event.keyCode
+	if (charCode > 31 && (charCode < 48 || charCode > 57))
+		return false;
+
+	return true;
+}
+
+function ConfirmEmailFn(){
+	var Email = document.getElementById("Email").value;
+	var ConfirmEmail = document.getElementById("ConfirmEmail").value;
+	if(Email == ConfirmEmail){
+		document.getElementById("ConfirmEmailPara").style.display = "none";
+	}else {
+		document.getElementById("ConfirmEmailPara").style.display = "block";
+	}
+	
+}
+function HideBundleInfo(){
+	
+	var ClientIndex = document.getElementById("ClientIndex").value;
+	document.getElementById("AddInfoTextArea").style.display = "none";
+	if(ClientIndex == 10 || ClientIndex == 15){
+		document.getElementById("OdessaBundleInfo").style.display = "inline";			
+	}
+	if(ClientIndex == 27 || ClientIndex == 29){
+		document.getElementById("CovidQues").style.display = "none";
+		document.getElementById("FrontlineHiddenInsuranceOptions").style.display = "none";
+		document.getElementById("FrontlineHiddenContactOptions").style.display = "none";
+		
+		document.getElementById("COVIDPositveChkY").required=false;
+		document.getElementById("TravellingChkY").required=false;
+		document.getElementById("COVIDExposedChkY").required=false;
+
+
+		document.getElementById("EmployerDiv").style.display = "none";
+		document.getElementById("OccupationDiv").style.display = "none";
+		document.getElementById("EmpContactDiv").style.display = "none";
+
+		document.getElementById("Employer").value = "";
+		document.getElementById("Occupation").value = "";
+		document.getElementById("EmpContact").value = "";
+		
+		document.getElementById("SpCarePhyDiv").style.display = "block";
+		document.getElementById("Section_3D_Frontline").style.display = "block";
+		document.getElementById("Section_3D").style.display = "none";
+		
+	}else{
+		document.getElementById("SpCarePhyDiv").style.display = "none";
+		document.getElementById("EmployerDiv").style.display = "block";
+		document.getElementById("OccupationDiv").style.display = "block";
+		document.getElementById("EmpContactDiv").style.display = "block";
+		document.getElementById("Section_3D_Frontline").style.display = "none";
+		document.getElementById("Section_3D").style.display = "block";
+
+	}
+	if(ClientIndex == 25){
+	
+		// $("#CovidQues").slideUp();
+
+		if(document.getElementById("ReasonVisitSelect").value == "COVID"){
+			$("#CovidQues").slideDown();
+			// document.getElementById("CovidQues").style.display = "block";
+		}
+		// <!-- document.getElementById("CovidQues").style.display = "none";		 -->
+		document.getElementById("SSNLabel").innerHTML = "<font color=\"black\">SSN *</font>";
+		document.getElementById("SSN").required = true;
+	}
+
+	if(ClientIndex == 41 || ClientIndex == 42 || ClientIndex == 43){
+		if("@@PoxPositveChk@@" =="1"){
+		document.getElementById("PoxExposed").style.display = "block";
+	}
+		document.getElementById("PoxPositveChkY").required =true;
+		document.getElementById("RashesChkY").required =true;
+		document.getElementById("AgeChk").required = true;
+		document.getElementById("Email").required = true;
+		document.getElementById("STD_DIV_FOR_WB_SW").style.display = "block";
+		document.getElementById("CovidQuesForLifesavers").style.display = "block";
+		document.getElementById("Attorney_DIV_FOR_WB_SW").style.display = "flex";
+		document.getElementById("lifesaveroptions_div").style.display="";
+
+	}else{
+		document.getElementById("STD_DIV_FOR_WB_SW").style.display = "none";
+		document.getElementById("Attorney_DIV_FOR_WB_SW").style.display = "none";
+		document.getElementById("lifesaveroptions_div").style.display="none";
+		
+	}
+	
+	
+}
+
+function FillSelfDetails(str){
+	if(str == "Self"){
+		document.getElementById("PrimaryDOB").value = document.getElementById("DOB").value;
+		document.getElementById("PrimarySSN").value = document.getElementById("SSN").value;
+		document.getElementById("AddressIfDifferent").value = document.getElementById("street_number").value+" "+ document.getElementById("locality").value
+		+" "+document.getElementById("administrative_area_level_1").value+" "+document.getElementById("country").value
+		+" "+document.getElementById("postal_code").value;
+		document.getElementById("PrimaryOccupation").value = document.getElementById("Occupation").value;
+		document.getElementById("PrimaryEmployer").value = document.getElementById("Employer").value;
+		document.getElementById("EmployerPhone").value = document.getElementById("EmpContact").value;
+		document.getElementById("PriInsurergender").value = document.getElementById("gender").value;	
+
+			document.getElementById("PriInsurerFirstName").value = document.getElementById("FirstName").value;				
+		document.getElementById("PriInsurerLastName").value = document.getElementById("LastName").value;		
+	}else{
+		document.getElementById("PrimaryDOB").value = "";
+		document.getElementById("PrimarySSN").value = "";	
+		document.getElementById("AddressIfDifferent").value = "";
+		document.getElementById("PrimaryOccupation").value = "";
+		document.getElementById("PrimaryEmployer").value = "";
+		document.getElementById("EmployerPhone").value = "";
+		document.getElementById("SubscriberDOB").value = "";
+		document.getElementById("PriInsurergender").value = "";	
+		document.getElementById("PriInsurerFirstName").value = "";				
+		document.getElementById("PriInsurerLastName").value = "";		
+	}	
+}
+
+function FillSelfDetailsForSecondary(str){
+	if(str == "Self"){
+		document.getElementById("SubscriberDOB").value = document.getElementById("DOB").value;
+		document.getElementById("SubscriberFirstName").value = document.getElementById("FirstName").value ;
+		document.getElementById("SubscriberLastName").value =  document.getElementById("LastName").value;	
+		document.getElementById("Subscribergender").value = document.getElementById("gender").value;	
+	}else{
+		document.getElementById("SubscriberDOB").value = "";
+		document.getElementById("SubscriberFirstName").value = "";	
+		document.getElementById("SubscriberLastName").value = "";
+		document.getElementById("Subscribergender").value = "";
+	}	
+}
+
+
+// function otherForExcel() {
+// 	var ClientIndex = document.getElementById("ClientIndex").value;
+// 	if(ClientIndex==1 || ClientIndex==10 || ClientIndex==17 ){
+// 		document.getElementById("OthersforExcel").style.display = "block";
+// 	}else{
+// 		document.getElementById("OthersforExcel").style.display = "none";
+// 	}
+// 	if(ClientIndex==39 || ClientIndex==40  ){
+// 		document.getElementById("sportsphysical").style.display = "block";
+// 	}else{
+// 		// document.getElementById("sportsphysical").style.display = "none";
+// 	}
+// }
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+	var PriInsuranceName;
+	$(window).on('load', function (event) {
+		$("[name='PriInsuranceName']").trigger('change');
+	});
+	
+	//Initialize Select2 Elements
+	$(".select2").select2();	
+
+	// Bind an event
+	$('.select2').on('select2:select', function (e) { 
+		console.log('select event');
+		PriInsuranceName = $("[name='PriInsuranceName']").val();
+		if(PriInsuranceName == 8605){
+		//alert(PriInsuranceName);
+		document.getElementById("OtherInsuranceDiv").style.display = "block";
+		document.getElementById("OtherInsuranceDiv").innerHTML = 
+			"<div class=\"form-group\"> "+
+			"<label><font color=\"black\">Other Insurance Name *</font></label> "+
+			"<input type=\"text\" class=\"form-control\" id=\"OtherInsuranceName\" name=\"OtherInsuranceName\" required>"+
+			"</div>";
+		}else{
+			document.getElementById("OtherInsuranceDiv").style.display = "none";
+			document.getElementById("OtherInsuranceDiv").innerHTML = "";
+		}
+
+		if(PriInsuranceName == 8608){
+			document.getElementById("InmateDiv").style.display = "block";
+		}				
+	});			
+});
+</script>
+
+<body class="hold-transition light-skin sidebar-mini theme-primary" onLoad="HideBundleInfo();closeLoadingDiv();"><!-- onload="HideReasonVisit();" -->
+	<div id="fade"></div>
+    <div id="loading">
+        <img id="loader" src="/oe/images/ajax-loader.gif"/>
+    </div>
+<div class="wrapper">  
+  <!-- Content Wrapper. Contains page content -->
+  <!-- <div class="content-wrapper"> -->
+	  <!-- <div class="container-full">	 -->
+		<!-- Main content -->
+	<section class="content">	
+		<div class="row">			  
+			<div class="col-12">
+				<form method="post" action="/md/md.PatientReg" id="PatientRegForm" onsubmit="return validate()">
+					<div class="box" style="background-color:#f9f6f1">
+						<div class="box-body" >							
+							<div class="row">
+								<div class="col-lg-1 col-12"></div>							
+								<div class="col-xl-10 col-12">									
+									<div class="box" style="border-style:groove">
+										<div class="box-header">
+											<center><img src="images_/@@ClientIndex_logo@@.png" alt=""></center>
+										</div>
+										<div id="Section_1D">
+											<div class="box-body">
+												<div class="form-header" style="border-style:inset">
+													<center><h2><font color="black">Registration</font></h2></center>
+												</div>
+												<br>
+												<h3 style="text-align:center;"><font color="black">Please fill with your details</font></h3><br><br>
+												<div class="form-row">
+													<div class="col-md-3">
+														<div class="form-group">
+															<label><font color="black">Title </font></label>
+															<select class="form-control" id="Title" name="Title" style="color:black;" onchange="disableGenderOption(this.value);">
+																@@TitleBuff@@
+															</select>
+													
+														</div>																
+													</div>
+													<div class="col-md-3">
+														<div class="form-group">
+															<label for=""><font color="black">First Name * </font></label>
+															<input type="text" placeholder=" " class="form-control" id="FirstName" name="FirstName" value="@@FirstName@@" required onkeypress="return alphaOnly(event);">
+														</div>																
+													</div>
+													<div class="col-md-3">
+														<div class="form-group">
+															<label for=""><font color="black">Last Name *</font></label>
+															<input type="text" placeholder="" class="form-control" id="LastName" name="LastName" value="@@LastName@@" required onkeypress="return alphaOnly(event);">
+														</div>																
+													</div>
+													<div class="col-md-3">
+														<div class="form-group">
+													 		<label for=""><font color="black">Middle Initial (optional)</font></label>
+															<input type="text" placeholder="" class="form-control" id="MiddleInitial" name="MiddleInitial" value="@@MiddleInitial@@" onkeypress="return alphaOnly(event);">
+														</div>																
+													</div>								
+												</div>
+												<div class="form-row">
+													<div class="col-md-3">
+														<div class="form-group">
+															<label><font color="black">Date of Birth * </font></label>											
+																<input type="date" class="form-control" placeholder="mm/dd/yyyy" name="DOB" id="DOB" onfocusout="getAge(this.value)" value="@@DOB@@" required min="1900-01-01" max="@@Date@@">
+																<!-- <input type="hidden" class="form-control" name="DOB" id="DOB">	-->
+														</div>																
+													</div>							 
+													<div class="col-md-2">
+														<div class="form-group">
+															<label><font color="black">Age * </font></label>
+															<input type="text" class="form-control" id="Age" name="Age" readOnly value="@@Age@@" required>
+														</div>																
+													</div>
+													
+													<div class="col-md-2">
+														<div class="form-group">
+															<label><font color="black">Gender * </font></label>
+															@@genderBuff@@
+														</div>																
+													</div>
+													<div class="col-md-3">
+														<div class="form-group">
+															<label><font color="black">Email </font></label>
+															<input type="text" placeholder="" class="form-control mixed" id="Email" name="Email" onInput="ValidateEmail(this)" onchange="ConfirmEmailFn();" value="@@Email@@" >
+															<div class="Email-help-block"></div>
+														</div>																
+													</div>
+													<div class="col-md-2">
+														<div class="form-group">
+															<label><font color="black">Confirm Email</font><font color="red" size="2" id="ConfirmEmailPara">*MISMATCH*</font></label>
+															<input type="text" placeholder="" class="form-control mixed" id="ConfirmEmail" name="ConfirmEmail" onInput="ValidateEmail(this)" onchange="ConfirmEmailFn();" value="@@Email@@" >
+															<div class="ConfirmEmail-help-block"></div>
+														</div>																
+													</div>							
+												</div>
+												<div class="form-row">
+													<div class="col-md-3">
+														<div class="form-group">
+															<label><font color="black">Marital Status </font></label>
+															<select class="form-control" id="MaritalStatus" name="MaritalStatus" style="color:black;">
+																@@MaritalStatusBuff@@
+															</select>
+																								  
+														</div>
+													</div>												
+													<div class="col-md-3">
+														<div class="form-group">
+															<label><font color="black">Phone Number *</font></label>
+															<input type="text" class="form-control num" id="PhNumber" name="PhNumber" onkeypress="return isNumberKey(event)" maxlength="10" onchange="ValidatePhoneNumber(this.value,this.id)" value="@@PhNumber@@" required>
+														</div>
+													</div>							
+													<div class="col-md-6">
+														<div class="form-group">
+															<label><font color="black">Enter Your Address *</font></label>
+															<input type="text" placeholder="" class="form-control mixed" id="autocomplete" name="autocomplete" onFocus="geolocate()" >								
+														</div>
+													</div>
+												</div>
+												<div class="form-row">
+													<div class="col-lg-6">
+														<label><font color="black">Street Address 1 *</font></label>
+														<div class="input-group">
+															<!-- <span class="input-group-addon"> -->
+																<!-- <input type="text" placeholder="" class="form-control" id="street_number" name="Address" value="@@Address@@" required> -->
+															<!-- </span> -->
+															<!-- <input type="text" placeholder="" class="form-control" id="route" name="Address2" value="@@Address2@@" required> -->
+															<input type="text" placeholder="" class="form-control mixed" id="Address" name="Address" value="@@Address@@" required>
+														</div>														
+													</div>					
+													<div class="col-md-6">
+														<div class="form-group">
+															<label><font color="black">Street Address 2</font></label>
+															<input type="text" placeholder="" class="form-control mixed" id="StreetAddress2" name="StreetAddress2" value="@@StreetAddress2@@">
+														</div>																
+													</div>							
+												</div>
+												<div class="form-row">
+													<div class="col-md-2">
+														<div class="form-group">
+															<label><font color="black">City * </font></label>
+															<input type="text" placeholder="" class="form-control" id="locality" name="City" onchange="getStreetRoute();"  value="@@City@@" required>
+														</div>																
+													</div>					
+													<div class="col-md-2">
+														<div class="form-group">
+															<label><font color="black">State *</font></label>
+															<input type="text" placeholder="" class="form-control" id="administrative_area_level_1" name="State" maxlength="2" value="@@State@@" required>
+														</div>																
+													</div>
+													<div class="col-md-3">
+														<div class="form-group">
+															<label><font color="black">County </font></label>
+															<input type="text" placeholder="" class="form-control" id="administrative_area_level_2" name="County" value="@@County@@" >
+														</div>																
+													</div>
+													<div class="col-md-3">
+														<div class="form-group">
+															<label><font color="black">Country </font></label>
+															<input type="text" placeholder="" class="form-control" id="country" name="Country" value="@@Country@@" required>
+														</div>																
+													</div>													
+													<div class="col-md-2">
+														<div class="form-group">
+															<label><font color="black">Zip Code *</font> </label>
+															<input type="text" placeholder="" class="form-control mixed" id="postal_code" name="ZipCode" value="@@ZipCode@@" required>
+														</div>																
+													</div>
+												</div>
+												
+<!-- @@TransactionTypeOptionsList@@ -->
+								
+												<div class="form-row">
+													<div class="col-md-6" >
+														<div class="form-group">
+															<label><font color="black">Ethnicity * </font></label>
+															@@EthnicityBuff@@
+														</div>
+													</div>
+													
+													<div class="col-md-6" >
+														<div class="form-group">
+															<label><font color="black">Race * </font></label>
+															@@RaceBuff@@
+														</div>
+													</div>
+												</div>
+												<div class="form-row">											
+													<div class="col-md-3">
+														<div class="form-group">
+															<label id="SSNLabel"><font color="black">SSN </font></label>
+															<input type="text" placeholder="" class="form-control num" id="SSN" name="SSN" maxlength="9" onkeypress="return isNumberKey(event)" onchange="ValidateSSN3(this.value,this.id);" value="@@SSN@@">
+														</div>																
+													</div>
+													<div class="col-md-3">
+														<div class="form-group">
+															<label><font color="black">Reason For Visit * </font></label>							  
+															@@ReasonVisitBuff@@
+														</div>
+													</div>
+													<div class="col-md-3" id="RVDIV">
+														<div class="form-group" id="ReasonVisitDiv">
+															<!-- <label><font color="black">Reason For Visit </font></label> -->
+															<!-- <input type="text" placeholder="" class="form-control" id="ReasonVisit" name="ReasonVisit" value="@@ReasonVisit@@" > -->
+															@@ReasonVisitBuffN@@
+														</div>																
+													</div>	
+													<div class="col-md-3" id="RVDIV_FR" style="display:none">
+														<div class="form-group" >
+															<label>
+																<font color="black">Reason For Visit * </font>
+															</label>
+															<input type="text" 
+															class="form-control mixed" id="ReasonVisitFr" name="ReasonVisitFr" value="@@ReasonVisit@@">
+														</div>
+													</div>																				
+												</div>
+												<div class="form-row">
+													<div class="col-md-3">
+														<div class="form-group">
+															<label><font color="black">Primary Care Physician</font></label>
+															<input type="text" placeholder="" class="form-control"id="PriCarePhy" name="PriCarePhy" value="@@PriCarePhy@@" >
+														</div>																
+													</div>
+													<div class="col-md-3" id="SpCarePhyDiv">
+														<div class="form-group">
+															<label><font color="black">Speciality Care Physicion</font></label>
+															<input type="text" placeholder="" class="form-control" id="SpCarePhy" name="SpCarePhy" value="@@SpCarePhy@@">
+														</div>																
+													</div>																										
+													<div class="col-md-2" id="EmployerDiv">
+														<div class="form-group">
+															<label><font color="black">Employer</font></label>
+															<input type="text" placeholder="" class="form-control" id="Employer" name="Employer" value="@@Employer@@">
+														</div>																
+													</div>
+													<div class="col-md-2" id="OccupationDiv">
+														<div class="form-group">
+															<label><font color="black">Occupation</font></label>							  
+															<input type="text" placeholder="" class="form-control" id="Occupation" name="Occupation" value="@@Occupation@@">									  
+														</div>
+													</div>
+													<div class="col-md-2" id="EmpContactDiv">
+														<div class="form-group" >
+															<label><font color="black">Employer Contact</font></label>
+															<input type="text" class="form-control num" id="EmpContact" name="EmpContact" onkeypress="return isNumberKey(event)" maxlength="10" onchange="ValidatePhoneNumber(this.value,this.id)" value="@@EmpContact@@">
+															<!-- <input type="text" placeholder="" class="form-control" id="EmpContact" name="EmpContact" onkeypress="return isNumberKey(event)" maxlength="10"> -->
+														</div>																
+													</div>												
+												</div>
+												<div class="form-row">
+                                                    <!-- <div class="col-md-3"> -->
+                                                        <!-- <div class="form-group"> -->
+                                                            <!-- <label><font color="black">Guarantor Name</font></label> -->
+                                                            <!-- <input type="text" placeholder="" class="form-control" -->
+                                                                   <!-- id="GuarantorName" name="GuarantorName" value="@@GuarantorName@@" onkeypress="return alphaOnly(event);"> -->
+                                                        <!-- </div> -->
+                                                    <!-- </div>    -->
+													<div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label><font color="black">Guarantor First Name</font></label>
+                                                            <input type="text" placeholder="" class="form-control"
+                                                                   id="GuarantorFirstName" name="GuarantorFirstName" value="@@GuarantorFirstName@@" onkeypress="return alphaOnly(event);">
+                                                        </div>
+                                                    </div>   
+													<div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label><font color="black">Guarantor Last Name</font></label>
+                                                            <input type="text" placeholder="" class="form-control"
+                                                            id="GuarantorLastName" name="GuarantorLastName" value="@@GuarantorLastName@@"  onkeypress="return alphaOnly(event);">
+                                                        </div>
+                                                    </div>   													
+													<div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label><font color="black">Guarantor DOB</font></label>
+                                                            <input type="date" placeholder="" class="form-control"
+                                                                   id="GuarantorDOB" name="GuarantorDOB" value="@@GuarantorDOB@@" min="1900-01-01" max="@@Date@@">
+                                                        </div>
+                                                    </div> 
+													<div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label><font color="black">Guarantor Number</font></label>
+                                                            <input type="text" placeholder="" class="form-control num"
+                                                                   id="GuarantorNumber" name="GuarantorNumber" onkeypress="return isNumberKey(event)" maxlength="10"
+                                                                   onchange="ValidatePhoneNumber(this.value,this.id)" value="@@GuarantorNumber@@">
+                                                        </div>
+                                                    </div> 
+													<div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label><font color="black">Guarantor SSN</font></label>
+                                                            <input type="text" placeholder="" class="form-control num"
+                                                                   id="GuarantorSSN" name="GuarantorSSN" maxlength="9" onkeypress="return isNumberKey(event)" onchange="ValidateSSN3(this.value,this.id)"  value="@@GuarantorSSN@@">
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>
+												<br>
+												<div id="CovidQues">
+													<div class="form-row">
+														<div class="col-md-6">
+															<div class="form-group">
+																<label><font color="black">Have you tested positive for COVID before, if so what date? *</font></label>															
+																@@COVIDPositveChkBuff@@									 
+															</div>
+														</div>
+														<div class="col-md-3" id="CovidPositiveDateDiv">
+															<div class="form-group">
+																<label><font color="black">Date of test *</font></label>
+																<input type="date" placeholder="" class="form-control" id="CovidPositiveDate" name="CovidPositiveDate" value="@@CovidPositiveDate@@" min="2019-12-01" max="@@Date@@">
+															</div>
+														</div>								
+													</div>
+													<div class="form-row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label><font color="black">Have you Traveled outside of the Country Within the last two weeks? *</font></label>															
+																@@TravellingChkBuff@@									 
+															</div>
+														</div>								
+													</div>
+													<div id="TravellingChkDiv">
+														<div class="form-row">
+															<div class="col-md-3">
+																<div class="form-group" >
+																	<label><font color="black">When have you traveled?</font></label>
+																	<input type="date" class="form-control" id="TravelWhen" name="TravelWhen" value="@@TravelWhen@@" min="2019-12-01" max="@@Date@@">																
+																</div>
+															</div>
+															<div class="col-md-3">
+																<div class="form-group" >
+																	<label><font color="black">Where have you traveled?</font></label>
+																	<input type="text" class="form-control mixed" id="TravelWhere" name="TravelWhere" value="@@TravelWhere@@" min="2019-12-01" max="2025-12-31">																
+																</div>
+															</div>
+															<div class="col-md-3">
+																<div class="form-group" >
+																	<label><font color="black">How Long?</font></label>
+																	<input type="text" class="form-control mixed" id="TravelHowLong" name="TravelHowLong" value="@@TravelHowLong@@" >																
+																</div>
+															</div>								
+														</div>
+													</div>
+													<div class="form-row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label><font color="black">Have you been Exposed or Had Direct Contact with someone with CORONAVIRUS? *</font></label>															
+																@@COVIDExposedChkBuff@@
+															</div>
+														</div>								
+													</div>
+													<div id="CovidExposedDiv">
+														<div class="form-row">
+															<div class="col-md-6">
+																<div class="form-group" >
+																	<label><font color="black">When have you been Exposed ?</font></label>
+																	<input type="date" class="form-control" id="CovidExpWhen" name="CovidExpWhen" value="@@CovidExpWhen@@" min="2019-12-01" max="@@Date@@">																
+																</div>
+															</div>																				
+														</div>
+													</div>
+													<div class="form-row">
+														<div class="col-md-12">
+															<div class="form-group" >
+																<label><font color="black">Do you have any of the following Symptoms? </font></label>
+																<div class="demo-checkbox" id="SymptomsChkBoxes">
+																	@@SympFever@@
+																	<label for="SympFever">Fever</label>
+																	
+																	@@SympBodyAches@@
+																	<label for="SympBodyAches">Body Aches</label>
+																	
+																	@@SympSoreThroat@@
+																	<label for="SympSoreThroat">Sore Throat</label>
+																	
+																	@@SympFatigue@@
+																	<label for="SympFatigue">Fatigue</label>
+																	
+																	@@SympRash@@
+																	<label for="SympRash">Rash</label>
+																	
+																	@@SympVomiting@@
+																	<label for="SympVomiting">Vomiting</label>
+																	
+																	@@SympDiarrhea@@
+																	<label for="SympDiarrhea">Diarrhea</label>
+																	
+																	@@SympCough@@
+																	<label for="SympCough">Cough</label>
+																	
+																	@@SympRunnyNose@@
+																	<label for="SympRunnyNose">Runny Nose</label>
+																	
+																	@@SympNausea@@
+																	<label for="SympNausea">Nausea</label>
+																	
+																	@@SympFluSymptoms@@
+																	<label for="SympFluSymptoms">Flu-like Symptoms</label>
+																	<br>
+																	@@SympHeadache@@
+																	<label for="SympHeadache">Headache </label>
+																	
+																	@@SympLossTaste@@
+																	<label for="SympLossTaste">Loss of Taste/Smell </label>
+																	
+																	@@SympShortBreath@@
+																	<label for="SympShortBreath">Shortness of breath</label>
+																	
+																	@@SympCongestion@@
+																	<label for="SympCongestion">Congestion</label>
+																	
+																</div>
+															</div>
+														</div>									
+													</div>
+												</div>
+												<div id="CovidQuesForLifesavers" style="display: none;">
+													<div class="form-row">
+														<div class="col-md-9">
+															<div class="form-group">
+																<label><font color="black">Have you possibly been exposed to someone with monkeypox/smallpox? If so, when did you come in contact with? *</font></label>															
+															@@PoxPositveChkBuff@@								 
+															</div>
+														</div>
+														<div class="col-md-3" id="PoxExposed" style="display: none;">
+															<div class="form-group">
+																<label><font color="black">Exposed Date *</font></label>
+																<input type="date" placeholder="" class="form-control" value="@@PoxExposedDate@@" id="PoxExposedDate" name="PoxExposedDate" onblur="validatedate(this.value);" max="@@Date@@">
+															</div>
+														</div>								
+													</div>
+													<div class="form-row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label><font color="black">Do you currently have any visible rashes? *</font></label>															
+															@@RashesChkBuff@@									 
+															</div>
+														</div>								
+													</div>
+											
+													<div class="form-row">
+														<div class="col-md-12">
+															<div class="form-group">
+																@@AgeChkBuff@@
+																<label for="AgeChk">Are you over the age of 18? *</label>								 
+															</div>
+														</div>								
+													</div>
+											
+													<div class="form-row">
+														<div class="col-md-12">
+															<div class="form-group" >
+																<label><font color="black">High Fall Risk - Implement High Fall Risk interventions per protocol </font></label>
+																<div class="demo-checkbox" id="FallRiskChkBoexes">
+																	<div>
+																	@@AssistanceChkBuff@@
+																	<label for="AssistanceChk">Do you require assistance or supervision when standing or walking?</label>
+																</div>
+																
+																	<div>
+																	@@FallenChkBuff@@
+																	<label for="FallenChk">Have you fallen in the past year?</label>
+																</div>
+																
+																	<div>
+																@@UnsteadyChkBuff@@
+																	<label for="UnsteadyChk">Do you feel unsteady when standing or walking?</label>
+																</div>
+																
+																	<div>
+																	@@PoxSymChkBuff@@
+																	<label for="PoxSymChk">Is your visit today due to lightheadedness, dizziness or irregular or rapidheartbeat?</label>
+																</div>
+
+																
+																	
+																</div>
+															</div>
+														</div>									
+													</div>
+											
+												</div>
+												<br>
+												<div class="form-row">
+													<div class="col-md-6">
+														<div class="form-group" >
+															<!-- <label><font color="black">When have you been Exposed?</font></label> -->
+															@@AddInfoTextAreaN@@															
+														</div>
+													</div>																				
+												</div>
+												<br>
+												<!-- <h4 style="text-align:center;"><font color="black">COVID Information</font></h4><br><br> -->
+												<!-- <div class="form-row"> -->
+													<!-- <div class="col-md-12"> -->
+														<!-- <div class="form-group"> -->
+															<!-- <label><font color="black">Select COVID Status</font></label>															 -->
+															<!-- @@COVIDStatusBuff@@ -->
+															<!-- </div> -->
+													<!-- </div>									 -->
+												<!-- </div> -->
+												<br>
+												<!-- <div class="form-row"> -->
+													<!-- <div class="col-md-12"> -->
+														<!-- <div class="form-group" >															 -->
+															<!-- <div class="demo-checkbox"> -->
+																<!-- @@SelfPayChkBuff@@ -->
+																<!-- <label for="SelfPayChk">If you have Insurance Click Here</font></label>																 -->
+															<!-- </div> -->
+														<!-- </div> -->
+													<!-- </div>									 -->
+												<!-- </div> -->
+												<br><br>
+												<div id="InsuranceDiv">													
+													<h3 style="text-align:center;"><font color="black">INSURANCE INFORMATION</font></h3>
+													<!-- <h4 style="text-align:center;"><font color="black">WE DO NOT ACCEPT MEDICARE/MEDICAID</font></h4><br><br> -->
+													<div class="form-row">
+														<div class="col-md-6">
+															<div class="form-group">
+																<label><font color="black">Is this a Worker's Comp Policy *</font></label>
+																@@WorkersCompPolicyBuff@@								 
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="form-group">
+																<label><font color="black">Is this due to Personal Injury *</font></label>							  
+																@@MotorVehAccidentBuff@@
+															</div>
+														</div>							
+													</div>
+													<div class="form-row" id="OdessaBundleInfo">
+														<div class="col-md-6">
+															<div class="form-group">
+																<label><font color="black">Please Select Insurance Registartion Packet *</font></label>							  
+																@@AdmissionBundleBuff@@
+															</div>
+														</div>
+													</div>
+													<div class="form-row">
+														<div class="col-md-3">
+															<div class="form-group">
+																<label><font color="black">Primary Insurance Name <span class="danger" id="PriInsuranceNamespan"style="display: none">*</span></font></label>
+																<select class="form-control select2" id="PriInsuranceName" name="PriInsuranceName" style="color:black;width: 100%;"
+																onchange="InsertInsField('CorporateAccountPriInsDiv',this.value,'CorporateAccountPriIns');">																	
+																	@@PriInsuranceNameBuff@@
+																</select>								  
+															</div>
+														</div>
+														<div class="col-md-3" id=CorporateAccountPriInsDiv style="display: none;">
+															<label><font color="black">Corporate Account *</font></label>
+															<select class="form-control select2" id="CorporateAccountPriIns" name="CorporateAccountPriIns" style="color:black;" >	
+																@@CorporateAccountProfessionalPriPayersList@@									
+															</select>
+														</div>
+														<div class="col-md-2" id="OtherInsuranceDiv">
+															@@OtherInsuranceNameBuff@@
+														</div>
+														<div class="col-md-2" id="InmateDiv" style="display:none">
+															<div class="form-group">
+																<label><font color="black">Inmate *</font></label>
+																<input type="text" placeholder="" class="form-control" id="Inmate" name="Inmate" value="@@Inmate@@">								  
+															</div>
+														</div>
+														<!-- <div class="col-md-3"> -->
+															<!-- <div class="form-group"> -->
+																<!-- <label><font color="black">Primary Insurance </font></label> -->
+																<!-- @@PriInsuranceBuff@@ -->
+																<!-- <input type="text" placeholder="" class="form-control" id="PriInsurance" name="PriInsurance" >									   -->
+															<!-- </div> -->
+														<!-- </div> -->
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">Member ID <span class="danger" id="MemIdspan"style="display: none">*</span></font></label>
+																<input type="text" placeholder="" class="form-control mixed" id="MemId" name="MemId" value="@@MemId@@" >								  
+															</div>
+														</div>
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">Group Number </font></label>
+																<input type="text" placeholder="" class="form-control num" id="GrpNumber" name="GrpNumber" value="@@GrpNumber@@" >								  
+															</div>
+														</div>
+														<div class="col-md-3">
+															<div class="form-group">
+																<label><font color="black">Patients relationship to primary <span class="danger" id="PatientRelationtoPrimaryspan" style="display: none">*</span></font></label>
+																<select class="form-control " id="PatientRelationtoPrimary" name="PatientRelationtoPrimary" style="color:black;" onchange="FillSelfDetails(this.value)">
+																	@@PatientRelationtoPrimaryBuff@@
+																</select>																						  
+															</div>
+														</div>
+													</div>
+													<div class="form-row">
+														<!-- <div class="col-md-3"> -->
+															<!-- <div class="form-group"> -->
+																<!-- <label><font color="black">Primary Insurer Name (if diffrent)</font></label> -->
+																<!-- <input type="text" placeholder="" class="form-control" id="PriInsurerName" name="PriInsurerName" value="@@PriInsurerName@@">									   -->
+															<!-- </div> -->
+														<!-- </div> -->
+														<div class="col-md-5">
+															<div class="form-group">
+																<label><font color="black">Primary Insurer First Name (if diffrent from patient)<span
+																	id="PriInsurerFirstNamespan"
+																	class="danger"
+																	style="display: none">
+																	*
+																</span></font></label>
+																<input type="text" placeholder="" class="form-control" id="PriInsurerFirstName" name="PriInsurerFirstName"  value="@@PriInsurerFirstName@@">									  
+															</div>
+														</div> 
+														<div class="col-md-5">
+															<div class="form-group">
+																<label><font color="black">Primary Insurer Last Name (if diffrent from patient) <span
+																	id="PriInsurerLastNamespan"
+																	class="danger"
+																	style="display: none">
+																	*
+																</span></font></label>
+																<input type="text" placeholder="" class="form-control" id="PriInsurerLastName" name="PriInsurerLastName"  value="@@PriInsurerLastName@@">									  
+															</div>
+														</div> 														
+														<div class="col-md-5">
+															<div class="form-group">
+																<label><font color="black">Address (if diffrent from patient)</font></label>
+																<input type="text" placeholder="" class="form-control mixed" id="AddressIfDifferent" name="AddressIfDifferent" value="@@AddressIfDifferent@@" >									  
+															</div>
+														</div>
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">Primary DOB <span id="PrimaryDOBspan" class="danger"
+																	style="display: none">
+																	*
+																</span></font></label>
+																<input type="date" placeholder="" class="form-control" id="PrimaryDOB" name="PrimaryDOB" value="@@PrimaryDOB@@" min="1900-01-01" max="@@Date@@">									  
+															</div>
+														</div>
+														<div class="col-md-2">
+														<div class="form-group">
+															<label><font color="black">PriInsurer Gender <span id="PriInsurergenderspan" class="danger"
+																style="display: none">
+																*
+															</span></font></label>
+															@@PriInsurergender@@
+														</div>																
+													</div>
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">Primary Social Security</font></label>
+																<!-- <input type="text" placeholder="" class="form-control" id="PrimarySSN" name="PrimarySSN" > -->
+																<input type="text" placeholder="" class="form-control num" id="PrimarySSN" name="PrimarySSN" maxlength="9" onkeypress="return isNumberKey(event)" onchange="ValidateSSN3(this.value,this.id)" value="@@PrimarySSN@@" >
+																<!-- onchange="Validate9Digit();" -->
+															</div>
+														</div>														
+													</div>
+													<div class="form-row" id="FrontlineHiddenInsuranceOptions">
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">Primary Occupation</font></label>
+																<input type="text" placeholder="" class="form-control" id="PrimaryOccupation" name="PrimaryOccupation" value="@@PrimaryOccupation@@" >									  
+															</div>
+														</div>
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">Primary Employer</font></label>
+																<input type="text" placeholder="" class="form-control" id="PrimaryEmployer" name="PrimaryEmployer" value="@@PrimaryEmployer@@" >									  
+															</div>
+														</div>
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">Employer Phone</font></label>
+																<input type="text" class="form-control num" id="EmployerPhone" name="EmployerPhone" onkeypress="return isNumberKey(event)" maxlength="10" onchange="ValidatePhoneNumber(this.value,this.id)" value="@@EmployerPhone@@">
+																<!-- <input type="number" placeholder="In Numeric" class="form-control" id="EmployerPhone" name="EmployerPhone" >								   -->
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="form-group">
+																<label><font color="black">Employer Address</font></label>
+																<input type="text" placeholder="" class="form-control mixed" id="EmployerAddress" name="EmployerAddress" value="@@EmployerAddress@@" >								  
+															</div>
+														</div>
+											
+													</div>
+													<div class="form-row">
+														<div class="col-md-4">
+															<div class="form-group">
+																<label><font color="black">Secondary Insurance (if applicable) <span
+																	id="SecondryInsurancespan"
+																	class="danger"
+																	style="display: none">
+																	*
+																</span></font></label>
+																<select class="form-control select2" id="SecondryInsurance" name="SecondryInsurance" style="color:black;" onchange="InsertInsField('CorporateAccountSecInsDiv',this.value,'CorporateAccountSecIns');">
+																	@@SecondryInsuranceBuff@@
+																</select>									  
+															</div>
+														</div>
+														<div class="col-md-3" id=CorporateAccountSecInsDiv style="display: none;">
+															<label><font color="black">Insurance Name *</font></label>
+															<select class="form-control select2" 
+															id="CorporateAccountSecIns" 
+															name="CorporateAccountSecIns" 
+															style="color:black;" >								@@CorporateAccountProfessionalSecPayersList@@									
+																</select>
+														</div>
+														<!-- <div class="col-md-2"> -->
+															<!-- <div class="form-group"> -->
+																<!-- <label><font color="black">Subscriber's Name</font></label> -->
+																<!-- <input type="text" placeholder="" class="form-control" id="SubscriberName" name="SubscriberName" value="@@SubscriberName@@" onkeypress="return alphaOnly(event);">									   -->
+															<!-- </div> -->
+														<!-- </div> -->
+														<div class="col-md-3">
+															<div class="form-group">
+																<label><font color="black">Subscriber's First Name <span id="SubscriberFirstNamespan" class="danger"
+																	style="display: none">
+																	*
+																</span></font></label>
+																<input type="text" placeholder="" class="form-control" id="SubscriberFirstName" name="SubscriberFirstName" value="@@SubscriberFirstName@@" onkeypress="return alphaOnly(event);">									  
+															</div>
+														</div>
+														<div class="col-md-3">
+															<div class="form-group">
+																<label><font color="black">Subscriber's Last Name <span id="SubscriberLastNamespan" class="danger"
+																	style="display: none">
+																	*
+																</span></font></label>
+																<input type="text" placeholder="" class="form-control" id="SubscriberLastName" name="SubscriberLastName" value="@@SubscriberLastName@@" onkeypress="return alphaOnly(event);">									  
+															</div>
+														</div>														
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">Subscriber's DOB <span id="SubscriberDOBspan" class="danger"
+																	style="display: none">
+																	*
+																</span></font> </label>
+																<input type="date" placeholder="" class="form-control" id="SubscriberDOB" name="SubscriberDOB" value="@@SubscriberDOB@@" min="1900-01-01" max="@@Date@@">								  
+															</div>
+														</div>
+														<div class="col-md-2">
+														<div class="form-group">
+															<label><font color="black">Subscriber Gender <span
+																id="Subscribergenderspan"
+																class="danger"
+																style="display: none">
+																*
+															</span> </font></label>
+															@@Subscribergender@@
+														</div>																
+													</div>
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">Member ID <span
+																	id="MemberID_2span"
+																	style="display: none"
+																	class="danger"
+																	class="text-danger ">
+																	*
+																</span></font></label>
+																<input type="text" placeholder="" class="form-control mixed" id="MemberID_2" name="MemberID_2" value="@@MemberID_2@@" >								  
+															</div>
+														</div>
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">Group Number</font></label>
+																<input type="text" placeholder="" class="form-control num" id="GroupNumber_2" name="GroupNumber_2" value="@@GroupNumber_2@@">								  
+															</div>
+														</div>
+													</div>
+													<div class="form-row">
+														<div class="col-md-3">
+															<div class="form-group">
+																<label><font color="black">Patient relationship to secondary <span
+																	id="PatientRelationshiptoSecondaryspan"
+																	class="danger"
+																	style="display: none">
+																	*
+																</span></font></label>
+																<select class="form-control " id="PatientRelationshiptoSecondry" name="PatientRelationshiptoSecondry" style="color:black;"  onchange="FillSelfDetailsForSecondary(this.value)">
+																	@@PatientRelationshiptoSecondryBuff@@	
+																</select>
+																							  
+															</div>
+														</div>														
+													</div>													
+												</div>
+												
+												<div id="EmergencyDiv">
+													<h3 style="text-align:center;"><font color="black">Emergency Contact Information</font></h3><br>
+													<div class="form-row">
+														<div class="col-md-3">
+															<div class="form-group">
+																<label><font color="black">Name</font></label>
+																<input type="text" placeholder="" class="form-control" id="NextofKinName" name="NextofKinName" value="@@NextofKinName@@" >									  
+															</div>
+														</div>
+														<div class="col-md-3">
+															<div class="form-group">
+																<label><font color="black">Relationship to Patient</font></label>
+																<input type="text" placeholder="" class="form-control" id="RelationToPatientER" name="RelationToPatientER" value="@@RelationToPatientER@@" >								  
+															</div>
+														</div>
+														<div class="col-md-3">
+															<div class="form-group">
+																<label><font color="black">Phone Number</font></label>
+																<!-- <input type="text" placeholder="" class="form-control" id="PhoneNumberER" name="PhoneNumberER" > -->
+																<input type="text" class="form-control num" id="PhoneNumberER" name="PhoneNumberER" onkeypress="return isNumberKey(event)" maxlength="10" onchange="ValidatePhoneNumber(this.value,this.id)" value="@@PhoneNumberER@@">
+															</div>
+														</div>
+														<div class="col-md-3">
+															<div class="form-group">
+																<label><font color="black">Leave Message?</font></label>
+																@@LeaveMessageERBuff@@
+															</div>
+														</div>														
+													</div>
+													<div class="form-row" id="FrontlineHiddenContactOptions">
+														<div class="col-md-4">
+															<div class="form-group">
+																<label><font color="black">Address</font></label>
+																<input type="text" placeholder="" class="form-control mixed" id="AddressER" name="AddressER" value="@@AddressER@@" >									  
+															</div>
+														</div>
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">City</font></label>
+																<input type="text" placeholder="" class="form-control" id="CityER" name="CityER" value="@@CityER@@" >								  
+															</div>
+														</div>
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">State</font></label>
+																<input type="text" placeholder="" class="form-control" id="StateER" name="StateER" value="@@StateER@@" >								  
+															</div>
+														</div>														
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">Country</font></label>
+																<select class="form-control" id="CountryER" name="CountryER" style="color:black;" >
+																	@@CountryBuffER@@
+																</select>								  
+															</div>
+														</div>
+														<div class="col-md-2">
+															<div class="form-group">
+																<label><font color="black">Zip Code</font></label>
+																<input type="text" placeholder="" class="form-control mixed" id="ZipCodeER" name="ZipCodeER" value="@@ZipCodeER@@" >								  
+															</div>
+														</div>
+													</div>													
+												</div>
+												<br>
+												<div class="form-row">
+													<div class="col-md-12">
+														<button id="Forwardbtn" type="button" class="waves-effect waves-light btn btn-outline btn-info mb-5" onclick="showSection3D();" style="float:right;">Forward</button>
+													</div>
+												</div>
+											</div>																					
+										</div>										
+										
+										<div id="Section_3D">
+											<div class="box-body">																							
+												<h3 style="text-align:center;"><font color="black">How Did You Hear About Us?</font></h3><br>
+												<h4 style="text-align:center;"><font color="black">Please check all that apply <span id="MarketingOptions_Span" style="display: none;">*</span></font></h4><br><br>
+												<div id="Section_3D_CheckBoxes">
+												<div class="form-row">
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@ReturnPatient@@
+																<label for="ReturnPatient">Return Patient</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@MapSearch@@
+																<label for="MapSearch">Map Search</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@Google@@
+																<label for="Google">Google</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@Billboard@@
+																<label for="Billboard">Billboard</label>																
+															</div>
+														</div>
+													</div>													
+												</div>
+												<div class="form-row">
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@OnlineReview@@
+																<label for="OnlineReview">Online Review</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@TV@@
+																<label for="TV">TV</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@Website@@
+																<label for="Website">Website</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@BuildingSignDriveBy@@
+																<label for="BuildingSignDriveBy">Building Sign/Drive By</label>																
+															</div>
+														</div>
+													</div>													
+												</div>
+												<div class="form-row">
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@Facebook@@
+																<label for="Facebook">Facebook</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@Twitter@@
+																<label for="Twitter">Twitter</label>																
+															</div>
+														</div>
+													</div>													
+													<div class="col-md-3">														
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@School@@
+																<label for="School">School</label>																
+															</div>															
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<input type="text" placeholder="School" class="form-control mixed" id="School_text" name="School_text" value="@@School_text@@">
+														</div>
+													</div>
+												</div>
+												<div class="form-row">
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@Magazine@@
+																<label for="Magazine">Magazine</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<input type="text" placeholder="Magazine" class="form-control mixed" id="Magazine_text" name="Magazine_text" value="@@Magazine_text@@">															
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@Newspaper@@
+																<label for="Newspaper">Newspaper</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<input type="text" placeholder="Newspaper" class="form-control mixed" id="Newspaper_text" name="Newspaper_text" value="@@Newspaper_text@@">
+														</div>
+													</div>													
+												</div>
+												<div class="form-row">
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@FamilyFriend@@
+																<label for="FamilyFriend">Family/Friend</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<input type="text" placeholder="Family/Friend" class="form-control mixed" id="FamilyFriend_text" name="FamilyFriend_text" value="@@FamilyFriend_text@@">													
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@UrgentCare@@
+																<label for="UrgentCare">Urgent Care</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<input type="text" placeholder="Urgent Care" class="form-control mixed" id="UrgentCare_text" name="UrgentCare_text" value="@@UrgentCare_text@@">
+														</div>
+													</div>													
+												</div>
+												<div class="form-row">
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@CommunityEvent@@
+																<label for="CommunityEvent">Community Event</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<input type="text" placeholder="Community Event" class="form-control mixed" id="CommunityEvent_text" name="CommunityEvent_text" value="@@CommunityEvent_text@@">													
+														</div>
+													</div>																								
+												</div>
+											</div>	
+												<h4>Were You Reffered ? <span id="Reffered_Span" style="display: none;">*</span></h4>
+											<div id="Marketing_Section_3D">	
+												<div class="form-row">
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@Work_textBuff@@ 
+																<label for="Work">Work</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<input type="text" placeholder="Work" class="form-control mixed" id="Work_text" name="Work_text" value="@@Work_text@@">
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@Physician_textBuff@@
+																<label for="Physician">Physician</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<input type="text" placeholder="Physician" class="form-control mixed" id="Physician_text" name="Physician_text" value="@@Physician_text@@">
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@Other_textBuff@@
+																<label for="Other">Other</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<input type="text" placeholder="Other" class="form-control mixed" id="Other_text" name="Other_text" value="@@Other_text@@">
+														</div>
+													</div>																								
+												</div>
+
+												<div class="form-row" id="lifesaveroptions_div" style="display: none;">
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@InstagramBuff@@ 
+																<label for="Instagram">Instagram</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<input type="text" placeholder="Instagram" class="form-control mixed" id="Instagram_text" name="Instagram_text" value="@@Instagram_text@@">
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@YoutubeBuff@@
+																<label for="Youtube">Youtube</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<input type="text" placeholder="Youtube" class="form-control mixed" id="Youtube_text" name="Youtube_text" value="@@Youtube_text@@">
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@SpotifyBuff@@
+																<label for="Spotify">Spotify</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<input type="text" placeholder="Spotify" class="form-control mixed" id="Spotify_text" name="Spotify_text" value="@@Spotify_text@@">
+														</div>
+													</div>																								
+												</div>		
+												<div class="row" id="Attorney_DIV_FOR_WB_SW" style="display: none;">
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@Attorney_textBuff@@
+																<label for="Attorney">Attorney </label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-group" >															
+															<input type="text" placeholder="Attorney" class="form-control mixed" id="Attorney_text" name="Attorney_text" value="@@Attorney_text@@">
+														</div>
+													</div>
+												</div>
+											</div>	
+
+												<div class="form-row" id="STD_DIV_FOR_WB_SW" style="display: none;">
+													<br>
+													<h3 style="text-align:center;"><font color="black">Consent</font></h3><br>
+													<div class="col-md-12">
+														<div class="form-group">
+																<label><span class="text-danger">*</span> <font color="black">I authorize the release of my STD results, HIV/AIDS testing, whether negative or positive, to
+the person(s) listed above. I understand that the person(s) listed above will be notified that I
+must give specific written permission before disclosure of these test results to anyone. </font>@@STDreleaseBuff@@	</label>							  
+																<!-- <div class="demo-radio-button"> -->
+																	
+																<!-- </div>									  -->
+															</div>
+													</div>
+													<div class="col-md-12">
+														<div class="form-group">
+																<label><span class="text-danger">*</span> <font color="black">I authorize the release of any records regarding drug, alcohol, or mental health treatment to
+the person(s) listed above. </font><br>@@releaseRecordBuff@@	</label>							  
+																<!-- <div class="demo-radio-button"> -->
+																	
+																<!-- </div>									  -->
+															</div>
+													</div>
+												</div>
+												<br>
+												<div class="form-row">
+													<div class="col-md-12">
+														<center><button type="submit" class="btn btn-rounded btn-success btn-lg" name="ActionID" value="EditSave_New">Submit</button></center>
+													</div>
+												</div>
+											</div>
+										
+										</div>
+										<div id="Section_3D_Frontline">
+											<div class="box-body">
+												<div class="form-row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label><font color="black">Have you been a patient here before?</font></label>
+															@@FrVisitedBeforeN@@								 
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label><font color="black">Has a member of your family been here before?</font></label>							  
+															@@FrFamiliyVisitedBeforeN@@									 
+														</div>
+													</div>							
+												</div>
+												<h3 style="text-align:center;"><font color="black">How Did You Hear About Us?</font></h3>
+												<h4 style="text-align:center;"><font color="black">Please check all that apply <span id="FrMarketingChks_Span" style="display: none;">*</span></font></h4><br><br>
+												<div id="MarketingChkBox">
+												<div class="form-row">
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@FrInternetN@@
+																<label for="FrInternet">Internet</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@FrBillboardN@@
+																<label for="FrBillboard">Billboard</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@FrGoogleN@@
+																<label for="FrGoogle">Google</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@FrBuildingSignageN@@
+																<label for="FrBuildingSignage">Building Signage</label>																
+															</div>
+														</div>
+													</div>																									
+												</div>
+												<div class="form-row">
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@FrFacebookN@@
+																<label for="FrFacebook">Facebook</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@FrLivesNearN@@
+																<label for="FrLivesNear">Lives/Work in Area</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@FrTwitterN@@
+																<label for="FrTwitter">Twitter</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@FrTVN@@
+																<label for="FrTV">Cable/TV</label>																
+															</div>
+														</div>
+													</div>																									
+												</div>
+												<div class="form-row">																																							
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@FrMapSearchN@@
+																<label for="FrMapSearch">Map Search</label>																
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<div class="demo-checkbox">
+																@@FrEventN@@
+																<label for="FrEvent">Event</label>																
+															</div>
+														</div>
+													</div>
+												</div>	
+											</div>																							
+												<h4 style="text-align:center;"><font color="black">WHOM CAN WE THANK FOR YOUR VISIT TODAY?</font></h4><br><br>
+												<div class="form-row">													
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<label><font color="black">Physician Referral</font></label>
+															<input type="text" placeholder="Physician Referral" class="form-control" id="FrPhysicianReferral" name="FrPhysicianReferral" value="@@FrPhysicianReferral@@">
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<label><font color="black">Neurology Referral</font></label>
+															<input type="text" placeholder="Neurology Referral" class="form-control" id="FrNeurologyReferral" name="FrNeurologyReferral" value="@@FrNeurologyReferral@@">
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<label><font color="black">Urgent Care Referral</font></label>
+															<input type="text" placeholder="Urgent Care Referral" class="form-control" id="FrUrgentCareReferral" name="FrUrgentCareReferral" value="@@FrUrgentCareReferral@@">
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<label><font color="black">Organization Referral</font></label>
+															<input type="text" placeholder="Organization Referral" class="form-control" id="FrOrganizationReferral" name="FrOrganizationReferral" value="@@FrOrganizationReferral@@">
+														</div>
+													</div>
+																																					
+												</div>
+												<div class="form-row">													
+													<div class="col-md-3">
+														<div class="form-group" >															
+															<label><font color="black">Friend or Family</font></label>
+															<input type="text" placeholder="Friend or Family" class="form-control" id="FrFriendFamily" name="FrFriendFamily" value="@@FrFriendFamily@@">
+														</div>
+													</div>																																				
+												</div>	
+												<br>
+												<div class="form-row">
+													<div class="col-md-12">
+														<center><button type="submit" class="btn btn-rounded btn-success btn-lg" name="ActionID" id="ActionID" value="EditSave_New" >Submit</button></center>
+													</div>
+												</div>
+											</div>
+										
+										</div>
+										
+										
+										
+										<!-- <div class="box-footer"> -->
+											<!-- <button type="submit" class="btn btn-rounded btn-danger">Cancel</button> -->
+											<!-- <center><button type="submit" class="btn btn-rounded btn-success btn-lg" name="ActionID" value="SaveData">Submit</button></center> -->
+										<!-- </div> -->
+									</div>
+									
+								</div>								
+								<input type="hidden" name="ClientIndex" id="ClientIndex" value="@@ClientIndex@@">
+								<input type="hidden" name="MRN" id="MRN" value="@@MRN@@">
+								
+								<input type="hidden" name="street_number" id="street_number" value="">
+								<input type="hidden" name="route" id="route" value="">
+								
+								
+								<div class="col-lg-1 col-12">									
+								</div>
+							
+							</div>							
+						</div>				
+					</div>	
+				</form>           
+			</div>
+		</div>	
+			<!-- /.col -->
+	
+		  <!-- /.row -->
+	</section>
+		<!-- /.content -->
+	  
+	  <!-- </div> -->
+  <!-- </div> -->
+  <!-- /.content-wrapper -->    
+</div>
+      <!-- JQUERY -->
+	  
+	<!-- <script src="/orange/main/js/vendors.min.js"></script> -->
+    <!-- <script src="/orange/assets/icons/feather-icons/feather.min.js"></script>	 -->
+	<!-- <script src="/orange/assets/vendor_components/datatable/datatables.min.js"></script> -->
+	<!-- <script src="/orange/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js"></script> -->
+	<!-- <script src="/orange/assets/vendor_components/select2/dist/js/select2.full.js"></script> -->
+	<!-- <script src="/orange/assets/vendor_components/sweetalert/sweetalert.min.js"></script> -->
+    <!-- <script src="/orange/assets/vendor_components/sweetalert/jquery.sweet-alert.custom.js"></script> -->
+	
+	<!-- Florence Admin App -->
+	<!-- <script src="/orange/main/js/template.js"></script> -->
+	<!-- <script src="/orange/main/js/demo.js"></script> -->
+	<!-- <script src="/orange/main/js/pages/data-table.js"></script> -->
+	<!-- <script src="/orange/main/js/pages/advanced-form-element.js"></script> -->
+	
+	<script src="/md/main/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+	<script src="/md/main/js/plugins/daterangepicker/daterangepicker.js"></script>
+	
+<script>
+// <!-- $(document).ready(function () { -->
+// 	<!-- $('#DOB').datepicker({ -->
+// 		<!-- singleDatePicker: true, -->
+// 		<!-- showDropdowns: true, -->
+// 		<!-- dateFormat: 'mm-dd-yyyy' -->
+// 	<!-- });		 -->
+// <!-- }); -->
+
+$(document).ready(function() {
+
+	$("input").bind(
+				"input",
+				function (event) {
+					var $this = $(this);
+					// alert($("#" + $this[0].id + "").attr('type'));
+					if ($("#" + $this[0].id + "").attr('type') != "radio" && $("#" + $this[0].id + "").attr('type') != "checkbox" && $("#" + $this[0].id + "").attr('type') != "date") {
+						var regexFormNum = new RegExp(/^[0-9]*$/);
+						var regexForAlpha = new RegExp(/^[A-Za-z \-']*$/);
+						var regexForAlphaNumeric = new RegExp(/^[0-9A-Za-z \-'@]*$/);
+						var reg;
+						var regForReplace;
+						var msg;
+						var ClassName = $("#" + $this[0].id + "").attr("class");
+						if (ClassName.includes("num")) {
+							reg = regexFormNum;
+							regForReplace = new RegExp(/[^0-9\-]/g);
+							msg = "Can't Accept Mixed Charater. Numbers Only";
+						} else if (ClassName.includes("mixed")) {
+							reg = regexForAlphaNumeric;
+							regForReplace = new RegExp(/[^a-zA-Z@ '.:,0-9#\-]/g);
+						} else {
+							reg = regexForAlpha;
+							regForReplace = new RegExp(/[^a-zA-Z '.\-]/g);
+							// `/[^a-zA-Z -']/g`;
+
+							msg = "Can't Accept Mixed Charater. Alphabets Only";
+						}
+
+						var val = $this.val();
+						if (reg.test(val) == true) {
+							$("#" + $this[0].id + "").val(val);
+						} else {
+							// val[val.length()-1]="";
+							$("#" + $this[0].id + "").val(val.replace(regForReplace, ""));
+							event.preventDefault();
+							return false;
+
+							// alert(msg);
+							// $("#"+$this[0].id+"").val('');
+						}
+
+						// document.getElementById("Registration").innerHTML="Hello world";
+					}
+				}
+			);
+
+
+
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+
+$(document).ready(function () {
+	// <!-- document.getElementById("WorkersCompPolicyY").required=true; -->
+	// <!-- document.getElementById("MotorVehAccidentY").required=true;	 -->
+	// <!-- document.getElementById("PriInsuranceName").required=true;	 -->
+	// <!-- document.getElementById("MemId").required=true;	 -->
+	// <!-- document.getElementById("GrpNumber").required=true;	 -->
+	// <!-- document.getElementById("PrimaryDOB").required=true;	 -->
+	// <!-- document.getElementById("PatientRelationtoPrimary").required=true;	 -->
+	var ClientIndex = document.getElementById("ClientIndex").value;
+	if(ClientIndex == 27 || ClientIndex == 29){	
+		//alert(document.getElementById("ReasonVisit").value == "");
+		if(document.getElementById("ReasonVisit").value == ""){
+			document.getElementById("ReasonVisit").required = true;
+		}		
+	}
+	
+	// <!-- document.getElementById("SympFever").required = true; -->
+	// <!-- document.getElementById("SympBodyAches").required = true; -->
+	// <!-- document.getElementById("SympSoreThroat").required = true; -->
+	// <!-- document.getElementById("SympAbdPain").required = true;		 -->
+	// <!-- document.getElementById("SympRash").required = true;		 -->
+	// <!-- document.getElementById("SympVomiting").required = true;		 -->
+	// <!-- document.getElementById("SympDiarrhea").required = true;		 -->
+	// <!-- document.getElementById("SympCough").required = true;		 -->
+	// <!-- document.getElementById("SympEyePain").required = true;		 -->
+	// <!-- document.getElementById("SympEyeIrritation").required = true;		 -->
+	// <!-- document.getElementById("SympEyeDrainage").required = true;		 -->
+	// <!-- document.getElementById("SympEyeConjunctivitis").required = true;		 -->
+	// <!-- $(function(){ -->
+	// 	<!-- var requiredCheckboxes = $('#SymptomsChkBoxes :checkbox[required]'); -->
+	// 	<!-- requiredCheckboxes.change(function(){ -->
+	// 		<!-- if(requiredCheckboxes.is(':checked')) { -->
+	// 			<!-- requiredCheckboxes.removeAttr('required'); -->
+	// 		<!-- } else { -->
+	// 			<!-- requiredCheckboxes.attr('required', 'required'); -->
+	// 		<!-- } -->
+	// 	<!-- }); -->
+	// <!-- }); -->
+	
+});
+
+$(function () {
+    //Initialize Select2 Elements
+     $(".select2").select2({
+			width: 'resolve' 
+		});
+
+    if('@@CorporateAccountProfessionalSec@@' == 1){
+    	$("#CorporateAccountSecInsDiv").fadeIn();
+    }
+
+    if('@@CorporateAccountProfessionalPri@@' == 1){
+    	$("#CorporateAccountPriInsDiv").fadeIn();
+    }
+    
+});
+
+
+function validatedate(dateString){
+	if(dateString!=""){
+		// alert("DATE : " +dateString)
+		var myDate = dateString.split('-');
+		var regEx = /^\d{4}-\d{2}-\d{2}$/;
+		if(!dateString.match(regEx)){
+			// alert("Invalid Date");
+			
+			return false; // Invalid format 
+
+		}  
+		// alert("Year -> "+myDate[0]);
+		if(myDate[0]<1900){
+			// alert("Please Enter Date >= 1900");
+			return false;
+		}
+		return true;
+	}
+	return true;//incase of empty Date    
+}
+
+document.getElementById("PatientRegForm").addEventListener('submit',(e)=>{
+	var error = [];
+	var DateElements = $('input[type=date]');
+	for (var i =0; DateElements.length > i;  i++) {
+		if(!validatedate(DateElements[i].value)){
+			error.push(`${DateElements[i].name} is Invalid Date`);
+			DateElements[i].value="";
+			DateElements[i].focus();
+			e.preventDefault();
+			alert(error.join(", \n "));
+			return false;
+		}
+	}
+})
+
+
+function disableGenderOption(option) {
+	// body...
+	if(option=="Mr"){
+		console.log($("#gender")[0][2].disabled);
+		$("#gender")[0][2].disabled = true;
+		$("#gender")[0][1].disabled = false;
+		$("#gender").val("male")
+
+	}else if(option!=""){
+		console.log($("#gender")[0][1].disabled);
+		$("#gender")[0][1].disabled = true;
+		$("#gender")[0][2].disabled = false;
+		$("#gender").val("female")
+	}
+	// document.getElementById("gender").value="";
+}
+
+
+
+function alphaOnly(event) {
+  var key = event.keyCode;
+  console.log("\n Keycode -> "+key);
+  if (key > 33 && (key < 65 || key > 90) && (key < 97 || key > 122) && key!=39) {
+          // alert("Enter letters only.");
+          return false;
+       }
+       return true;
+};
+
+// function InsertInsField(Div_Id,value,elem_Id) {
+
+// 	    var PriInsuranceName = $("#PriInsuranceName").val();
+// 		var SecondaryInsuranceName = $("#SecondryInsurance").val();
+
+// 		if(value == 8608){
+// 			document.getElementById("InmateDiv").style.display="";
+// 			document.getElementById("Inmate").required = true ;
+// 		}else{
+// 			document.getElementById("InmateDiv").style.display="none";
+// 			document.getElementById("Inmate").required = false ;
+// 			document.getElementById("Inmate").value = "" ;
+// 		}
+
+// 		if(PriInsuranceName >=1 && PriInsuranceName != 8606){
+
+
+// 			document.getElementById("MemId").required = true ;
+// 			document.getElementById("PatientRelationtoPrimary").required = true ;
+// 			document.getElementById("PriInsurerFirstName").required = true ;
+// 			document.getElementById("PriInsurerLastName").required = true ;
+// 			document.getElementById("PrimaryDOB").required = true ;
+// 			document.getElementById("PriInsurergender").required = true ;
+
+// 		}else{
+// 			document.getElementById("MemId").required = false; 
+// 			document.getElementById("PatientRelationtoPrimary").required = false ;
+// 			document.getElementById("PriInsurerFirstName").required = false ;
+// 			document.getElementById("PriInsurerLastName").required = false ;
+// 			document.getElementById("PrimaryDOB").required = false ;
+// 			document.getElementById("PriInsurergender").required = false ;
+			
+// 		}
+
+// 		if(SecondaryInsuranceName >=1 && SecondaryInsuranceName != 8606){
+
+
+// 			document.getElementById("SubscriberFirstName").required = true ;
+// 			document.getElementById("SubscriberLastName").required = true ;
+// 			document.getElementById("SubscriberDOB").required = true ;
+// 			document.getElementById("MemberID_2").required = true ;
+// 			document.getElementById("PatientRelationshiptoSecondry").required = true; 
+// 			document.getElementById("Subscribergender").required = true; 
+// 		}else{
+
+// 			document.getElementById("SubscriberFirstName").required = false; 
+// 			document.getElementById("SubscriberLastName").required = false ;
+// 			document.getElementById("SubscriberDOB").required = false ;
+// 			document.getElementById("MemberID_2").required = false ;
+// 			document.getElementById("PatientRelationshiptoSecondry").required = false ;
+// 			document.getElementById("Subscribergender").required = false ;
+
+// 		}
+
+//     	console.log("Value -> ",value);
+//     	if(value=='-999'){
+//     		$(`#${Div_Id}`).fadeIn();
+//     	}else{
+//     		$(`#${Div_Id}`).fadeOut();
+//     		$(`#${elem_Id}`).val("");
+//     	}
+//     }
+function InsertInsField(Div_Id, value, elem_Id) {
+
+var PriInsuranceName = $("#PriInsuranceName").val();
+var SecondaryInsuranceName = $("#SecondryInsurance").val();
+//console.log("Value -> ",value);
+if (value == "-999") {
+	$(`#${Div_Id}`).fadeIn();
+	$("#" + elem_Id + "").attr("required", true);
+} else {
+	$(`#${Div_Id}`).fadeOut();
+	$(`#${elem_Id}`).val("");
+	$("#" + elem_Id + "").attr("required", false);
+}
+
+if (PriInsuranceName == 8608) {
+	document.getElementById("InmateDiv").style.display = "";
+	document.getElementById("Inmate").required = true;
+} else {
+	document.getElementById("InmateDiv").style.display = "none";
+	document.getElementById("Inmate").required = false;
+}
+
+if (PriInsuranceName != "" && PriInsuranceName != 8606) {
+	document.getElementById("MemId").required = true;
+	$("#MemIdspan").css("display", "inline");
+	document.getElementById("PatientRelationtoPrimary").required = true;
+	$("#PatientRelationtoPrimaryspan").css("display", "inline");
+
+	document.getElementById("PriInsurerFirstName").required = true;
+	$("#PriInsurerFirstNamespan").css("display", "inline");
+
+	document.getElementById("PriInsurerLastName").required = true;
+	$("#PriInsurerLastNamespan").css("display", "inline");
+
+	document.getElementById("PrimaryDOB").required = true;
+	$("#PrimaryDOBspan").css("display", "inline");
+
+	document.getElementById("PriInsurergender").required = true;
+	$("#PriInsurergenderspan").css("display", "inline");
+
+	//   validatorForm();
+
+} else {
+	document.getElementById("MemId").required = false;
+	$("#MemIdspan").css("display", "none");
+	document.getElementById("PatientRelationtoPrimary").required = false;
+	$("#PatientRelationtoPrimaryspan").css("display", "none");
+	document.getElementById("PriInsurerFirstName").required = false;
+	$("#PriInsurerFirstNamespan").css("display", "none");
+	document.getElementById("PriInsurerLastName").required = false;
+	$("#PriInsurerLastNamespan").css("display", "none");
+	document.getElementById("PrimaryDOB").required = false;
+	$("#PrimaryDOBspan").css("display", "none");
+	document.getElementById("PriInsurergender").required = false;
+	$("#PriInsurergenderspan").css("display", "none");
+
+	//   validatorForm();
+
+}
+
+if (SecondaryInsuranceName != "" && SecondaryInsuranceName != 8606) {
+	document.getElementById("SubscriberFirstName").required = true;
+	$("#SubscriberFirstNamespan").css("display", "inline");
+
+	document.getElementById("SubscriberLastName").required = true;
+	$("#SubscriberLastNamespan").css("display", "inline");
+
+	document.getElementById("SubscriberDOB").required = true;
+	$("#SubscriberDOBspan").css("display", "inline");
+
+	document.getElementById("Subscribergender").required = true;
+	$("#Subscribergenderspan").css("display", "inline");
+
+	document.getElementById("MemberID_2").required = true;
+	$("#MemberID_2span").css("display", "inline");
+
+	document.getElementById(
+		"PatientRelationshiptoSecondry"
+	).required = true;
+	$("#PatientRelationshiptoSecondaryspan").css("display", "inline");
+
+	//   validatorForm();
+
+} else {
+	document.getElementById("SubscriberFirstName").required = false;
+	$("#SubscriberFirstNamespan").css("display", "none");
+	document.getElementById("SubscriberLastName").required = false;
+	$("#SubscriberLastNamespan").css("display", "none");
+	document.getElementById("SubscriberDOB").required = false;
+	$("#SubscriberDOBspan").css("display", "none");
+	document.getElementById("Subscribergender").required = false;
+	$("#Subscribergenderspan").css("display", "none");
+	document.getElementById("MemberID_2").required = false;
+	$("#MemberID_2span").css("display", "none");
+	document.getElementById(
+		"PatientRelationshiptoSecondry"
+	).required = false;
+	$("#PatientRelationshiptoSecondaryspan").css("display", "none");
+	//   validatorForm();
+
+}
+}
+
+
+</script>
+
+<script>
+		function validate() {
+	
+		// var Month = $("#Month").val();   
+		// var Day = $("#Day").val();   
+		// var Year =  $("#Year").val(); 
+		var d = new Date();
+		var DOBValidatorChk = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+	
+			if ($("#PhNumber").val().length > 1) {
+				if (ValidatePhoneNumber($("#PhNumber").val(), $("#PhNumber").attr('id')) == false)
+					return false;
+			}
+			if ($("#EmpContact").val().length > 1) {
+				if (ValidatePhoneNumber($("#EmpContact").val(), $("#EmpContact").attr('id')) == false)
+					return false;
+			}
+
+			if ($("#GuarantorNumber").val().length > 1) {
+
+				if (ValidatePhoneNumber($("#GuarantorNumber").val(), $("#GuarantorNumber").attr('id')) == false) {
+					return false;
+				}
+
+			}
+			if ($("#EmployerPhone").val().length > 1) {
+				if (ValidatePhoneNumber($("#EmployerPhone").val(), $("#EmployerPhone").attr('id')) == false)
+					return false;
+			}
+			if ($("#PhoneNumberER").val().length > 1) {
+				if (ValidatePhoneNumber($("#PhoneNumberER").val(), $("#PhoneNumberER").attr('id')) == false)
+					return false;
+			}
+
+			if ($("#SSN").val().length > 1) {
+				if (ValidateSSN3($("#SSN").val(), $("#SSN").attr('id')) == false) {
+					return false;
+				}
+
+			}
+
+			if ($("#GuarantorSSN").val().length > 1) {
+				if (ValidateSSN3($("#GuarantorSSN").val(), $("#GuarantorSSN").attr('id')) == false) {
+					return false;
+				}
+
+			}
+			if ($("#PrimarySSN").val().length > 1) {
+				if (ValidateSSN3($("#PrimarySSN").val(), $("#PrimarySSN").attr('id')) == false) {
+					return false;
+				}
+
+			}
+
+			if($("#Email").val() != $("#ConfirmEmail").val()){
+			$("#Email").focus();
+			swal("Oops..","Email Mismatch","error");
+			return false;
+			}
+
+			if($("#DOB").val() > '@@Date@@' ){
+				$("#DOB").focus();
+				swal("Oops..","DOB Not Correct","error");
+				return false;
+			}
+
+			if (!ValidateEmail(document.getElementById("Email"))){
+			$("#Email").focus();
+			swal("Error","Please Enter Correct Email","error");
+				return false;
+			}
+			if (!ValidateEmail(document.getElementById("ConfirmEmail"))){
+			$("#ConfirmEmail").focus();
+			swal("Error","Please Enter Correct Email","error");
+			return false;
+			}
+
+
+			var requiredElements = $("input,textarea,select").filter(
+				"[required]:visible"
+			);
+			for (var i = 0; i < requiredElements.length; i++) {
+				if (isEmpty($("#" + requiredElements[i].id + "").val()) == true) {
+					$("#" + requiredElements[i].id + "").focus();
+					// alert(requiredElements[i].name + "Field is Empty!");
+					swal("Oops..", "" + requiredElements[i].name + "Field is Empty!", "error");
+					$("#" + requiredElements[i].id + "").val('');
+
+					return false;
+				}
+			}
+
+		}
+		function isEmpty(str) {
+
+			return str == null || str.replaceAll(" ", "").length <= 0;
+		}
+		function ValidateEmail(inputText) {
+
+			if (
+				document
+					.getElementsByClassName(inputText.name + "-help-block")[0]
+					.hasChildNodes()
+			) {
+				document
+					.getElementsByClassName(inputText.name + "-help-block")[0]
+					.removeChild(
+						document.getElementsByClassName(inputText.name + "-help-block")[0]
+							.lastChild
+					);
+				// console.log(requiredElements[i].name + "-help-block'S child exists");
+			}
+			var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			if (inputText.value.trim() == "") {
+				return true;
+			} else {
+				if (inputText.value.match(mailformat)) {
+					return true;
+				} else {
+					var first = document.createElement("H6");
+					var text = document.createTextNode("invalid email");
+					first.style.color = "red";
+					first.appendChild(text);
+					document
+						.getElementsByClassName(inputText.name + "-help-block")[0]
+						.appendChild(first);
+					// alert("Please provide valid email ");
+					inputText.focus();
+					// alert("You have entered an invalid email address!");
+					inputText.focus();
+					return false;
+				}
+			}
+		}
+
+
+
+
+
+		function ValidateSSN3(PhNumber, Fieldid) {
+
+			var phlength;
+			var dashCount = PhNumber.split("-").length - 1;
+			// PhNumber= PhNumber.replaceAll("-","");
+			if (dashCount == 1) {
+				$("#" + Fieldid).attr("maxlength", "10");
+				phlength = 10;
+			} else if (dashCount == 2) {
+				$("#" + Fieldid).attr("maxlength", "11");
+				phlength = 11;
+			} else {
+				$("#" + Fieldid + "").attr('maxlength', '9');
+				phlength = 9;
+			}
+
+			if (PhNumber != "") {
+
+				if (PhNumber.length != phlength) {
+					$("#" + Fieldid + "").focus();
+					swal("Oops..","Please Enter Correct 9 Digits Number","error");
+					return false;
+				} else {
+
+					PhNumber = PhNumber.replaceAll("-", "");
+					document.getElementById(Fieldid).value = PhNumber.substring(0, 3) + "-" + PhNumber.substring(3, 5) + "-" + PhNumber.substring(5, 9);
+					//xxx-xxx-xxxx
+				}
+			}
+		}
+		function ValidatePhoneNumber(PhNumber, Fieldid) {
+
+
+			var phlength;
+			var dashCount = PhNumber.split("-").length - 1;
+			// PhNumber= PhNumber.replaceAll("-","");
+			if (dashCount == 1) {
+				$("#" + Fieldid).attr("maxlength", "11");
+				phlength = 11;
+			} else if (dashCount == 2) {
+				$("#" + Fieldid).attr("maxlength", "12");
+				phlength = 12;
+			} else {
+				$("#" + Fieldid + "").attr('maxlength', '10');
+				phlength = 10;
+			}
+
+			if (PhNumber != "") {
+
+				if (PhNumber.length != phlength) {
+					$("#" + Fieldid + "").focus();
+					swal("Oops..","Please Enter Correct 10 Digits Number","error");
+					return false;
+				} else {
+
+					PhNumber = PhNumber.replaceAll("-", "");
+					document.getElementById(Fieldid).value = PhNumber.substring(0, 3) + "-" + PhNumber.substring(3, 6) + "-" + PhNumber.substring(6, 10);
+					//xxx-xxx-xxxx
+				}
+			}
+		}
+
+
+</script>
+<script>
+		$(document).ready(function () {
+			debugger
+			
+		
+			document.getElementById("ReasonVisit").required = true;
+			COVIDPositveCheck($("[name='COVIDPositveChk']:checked").val());
+			TravllingChk($("[name='TravellingChk']:checked").val());
+			ExposedChk($("[name='COVIDExposedChk']:checked").val());
+
+			var ClientIndex = document.getElementById("ClientIndex").value;
+			var ClientIndex = document.getElementById("ClientIndex").value;
+			if(ClientIndex == 25){
+				if($("#ReasonVisitSelect").val() == "COVID"){
+					$("#CovidQues").slideDown();
+				}else{
+					$("#CovidQues").slideUp();
+
+				}
+			}
+			if (ClientIndex == 27 || ClientIndex == 29) {
+				if($("#ReasonVisitSelect").val() == 'COVID' || $("#ReasonVisitSelect").val() == 'Others'){
+					$("#RVDIV").show();
+					$("#ReasonVisit").attr("required",true);
+					$("#ReasonVisit").attr('name','ReasonVisit');
+					// $("#ReasonVisit").val('@@ReasonVisit@@');
+
+					$("#ReasonVisitFr").attr('name','');
+					$("#ReasonVisitFr").attr("required",false);
+					$("#RVDIV_FR").hide();
+				}else{
+					$("#ReasonVisit").attr("required",false);
+					$("#ReasonVisit").attr('name','');
+					$("#RVDIV").hide();
+
+					$("#RVDIV_FR").show();
+					$("#ReasonVisitFr").attr("required",true);
+					$("#ReasonVisitFr").attr('name','ReasonVisit');
+				}
+				$("#FrMarketingChks_Span").show();
+				document.getElementById("Forwardbtn").style.display = "none";
+				// document.getElementById("btnSubmitFr").style.display = "block";
+				document.getElementById("FrInternet").required = true;
+				document.getElementById("FrBillboard").required = true;
+				document.getElementById("FrGoogle").required = true;
+				document.getElementById("FrBuildingSignage").required = true;
+				document.getElementById("FrFacebook").required = true;
+				document.getElementById("FrLivesNear").required = true;
+				document.getElementById("FrTwitter").required = true;
+				document.getElementById("FrTV").required = true;
+				document.getElementById("FrMapSearch").required = true;
+				document.getElementById("FrEvent").required = true;
+				document.getElementById("FrVisitedBeforeY").required = true;
+				document.getElementById("FrFamiliyVisitedBeforeY").required = true;
+				document.getElementById("WorkersCompPolicyY").required = true;
+				document.getElementById("MotorVehAccidentY").required = true;
+
+					debugger
+				// $(function () {
+					var requiredCheckboxes = $('#MarketingChkBox :checkbox[required]');
+					requiredCheckboxes.each(function () {
+						if (requiredCheckboxes.is(':checked')) {
+							requiredCheckboxes.removeAttr('required');
+						} else {
+							requiredCheckboxes.attr("required", true);
+						}
+					});
+				// });
+				$(function () {
+					debugger
+					requiredCheckboxes.change(function () {
+						if (requiredCheckboxes.is(':checked')) {
+							requiredCheckboxes.removeAttr('required');
+						} else {
+							requiredCheckboxes.attr("required", true);
+						}
+					});
+				});
+			}
+// for life savers 
+if (ClientIndex == 41 || ClientIndex == 42 || ClientIndex == 43) {
+			$("#lifesaveroptions_div").show();
+          $("#PoxPositveChkY").attr("required", "true");
+          $("#PoxPositveChkN").attr("required", "true");
+          $("#RashesChkY").attr("required", "true");
+          $("#RashesChkN").attr("required", "true");
+          $("#AgeChk").attr("required", "true");
+          $("#AssistanceChk").attr("required", "true");
+          $("#FallenChk").attr("required", "true");
+          $("#UnsteadyChk").attr("required", "true");
+          $("#PoxSymChk").attr("required", "true");
+          $("#Instagram").attr("required", "true");
+          $("#Youtube").attr("required", "true");
+          $("#Spotify").attr("required", "true");
+          $("#Attorney").attr("required", "true");
+		  $(function () {
+            var requiredCheckboxes = $(
+              "#FallRiskChkBoexes :checkbox[required]"
+            );
+            requiredCheckboxes.change(function () {
+              if (requiredCheckboxes.is(":checked")) {
+                requiredCheckboxes.removeAttr("required");
+              } else {
+                requiredCheckboxes.attr("required", true);
+              }
+            });
+          });
+		}
+		if (
+          ClientIndex == 39 ||
+          ClientIndex == 40 ||
+          ClientIndex == 41 ||
+          ClientIndex == 42 ||
+          ClientIndex == 43
+        ) {
+          //  document.getElementById("Forwardbtn").style.display = "block";
+          // document.getElementById("btnSubmitFr").style.display = "none";
+		
+          $("#MarketingOptions_Span").show();
+          $("#Reffered_Span").show();
+          document.getElementById("ReturnPatient").required = true;
+          document.getElementById("Website").required = true;
+          document.getElementById("OnlineReview").required = true;
+          document.getElementById("Billboard").required = true;
+          document.getElementById("Google").required = true;
+          document.getElementById("BuildingSignDriveBy").required = true;
+          document.getElementById("Facebook").required = true;
+          document.getElementById("Twitter").required = true;
+          document.getElementById("TV").required = true;
+          document.getElementById("MapSearch").required = true;
+
+          document.getElementById("School").required = true;
+          document.getElementById("Magazine").required = true;
+          document.getElementById("Newspaper").required = true;
+          document.getElementById("FamilyFriend").required = true;
+          document.getElementById("UrgentCare").required = true;
+          document.getElementById("CommunityEvent").required = true;
+
+
+          document.getElementById("Work").required = true;
+         	document.getElementById("Physician").required = true;
+         	document.getElementById("Other").required = true;
+			//  $(function () {
+            var requiredCheckboxesSection_3D = $(
+              "#Section_3D_CheckBoxes :checkbox[required]"
+            );
+            requiredCheckboxesSection_3D.each(function () {
+              if (requiredCheckboxesSection_3D.is(":checked")) {
+                requiredCheckboxesSection_3D.removeAttr("required");
+              } else {
+                requiredCheckboxesSection_3D.attr("required", true);
+              }
+            });
+        //   });
+          $(function () {
+            requiredCheckboxesSection_3D.change(function () {
+              if (requiredCheckboxesSection_3D.is(":checked")) {
+                requiredCheckboxesSection_3D.removeAttr("required");
+              } else {
+                requiredCheckboxesSection_3D.attr("required", true);
+              }
+            });
+          });
+
+	
+                var requiredCheckboxes_Marketing_Section_3D = $('#Marketing_Section_3D :checkbox[required]');
+                requiredCheckboxes_Marketing_Section_3D.each(function () {
+                    if (requiredCheckboxes_Marketing_Section_3D.is(':checked')) {
+                        requiredCheckboxes_Marketing_Section_3D.removeAttr('required');
+                    } else {
+                        requiredCheckboxes_Marketing_Section_3D.attr("required", true);
+                    }
+                });
+         
+
+          $(function () {
+			requiredCheckboxes_Marketing_Section_3D.change(function () {
+                    if (requiredCheckboxes_Marketing_Section_3D.is(':checked')) {
+                        requiredCheckboxes_Marketing_Section_3D.removeAttr('required');
+                    } else {
+                        requiredCheckboxes_Marketing_Section_3D.attr("required", true);
+                    }
+                });
+            });
+       
+        }
+});
+		function PoxPositiveChk(value) {
+        if (value == 1) {
+          $("#PoxExposedDate").attr("required", true);
+          $("#PoxExposed").fadeIn();
+        } else {
+          $("#PoxExposedDate").attr("required", false);
+          $(`#PoxExposed`).fadeOut();
+        }
+      }
+
+	  function DisplayReasonVisitField(str){
+	var ClientIndex = document.getElementById("ClientIndex").value;
+
+	if(ClientIndex == 25){
+		if(str == "COVID"){
+			$("#CovidQues").slideDown();
+		}else{
+			$("#CovidQues").slideUp();
+
+		}
+	}
+	var xmlhttp;
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	}
+	else {
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var mySplitResult = xmlhttp.responseText;
+	
+			document.getElementById("ReasonVisitDiv").style.display = "block";
+			document.getElementById("ReasonVisitDiv").innerHTML = mySplitResult;
+			$("#ReasonVisit").attr("required",true);
+			if (ClientIndex == 27 || ClientIndex == 29) {
+				
+				
+				if(str == 'COVID' || str == 'Others'){
+					$("#RVDIV").show();
+					$("#ReasonVisit").attr("required",true);
+					$("#ReasonVisit").attr('name','ReasonVisit');
+				
+
+					$("#ReasonVisitFr").attr('name','');
+					$("#ReasonVisitFr").attr("required",false);
+					$("#RVDIV_FR").hide();
+				}else{
+					$("#ReasonVisit").attr("required",false);
+					$("#ReasonVisit").attr('name','');
+					$("#RVDIV").hide();
+
+					$("#RVDIV_FR").show();
+					$("#ReasonVisitFr").val('');
+					$("#ReasonVisitFr").attr("required",true);
+					$("#ReasonVisitFr").attr('name','ReasonVisit');
+				}
+			}
+			// if(ClientIndex == 39 || ClientIndex == 40){
+		// if(str == "Sports Physical"){
+		// 	document.getElementById("ReasonVisitDiv").style.display = "none";
+		// 	document.getElementById("ReasonVisit").value = "Sports Physical";
+		// }
+
+	// }
+		}
+	}
+	xmlhttp.open("POST", "/md/md.PatientReg?ActionID=ReasonVisits&ClientIndex=" + ClientIndex+"&ReasonVisitSelect="+str, true);
+
+	xmlhttp.send();
+}
+
+function openLoadingDiv() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('fade').style.display = 'block';
+        }
+
+        function closeLoadingDiv() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('fade').style.display = 'none';
+        }
+</script>
+
+</body>
+</html>

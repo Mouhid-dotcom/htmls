@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../images/favicon.ico">
+
+    <title>Rover MD</title>
+  
+	<!-- Vendors Style-->
+	<link rel="stylesheet" href="/orange/main/css/vendors_css.css">
+	  
+	<!-- Style-->  
+	<link rel="stylesheet" href="/orange/main/css/style.css">
+	<link rel="stylesheet" href="/orange/main/css/skin_color.css">
+
+</head>
+
+
+<body class="hold-transition light-skin sidebar-mini theme-primary" onload="AddReasonVisitDropDown();">
+	
+<div class="wrapper">  
+  <!-- Content Wrapper. Contains page content -->
+  <!-- <div class="content-wrapper"> -->
+	  <!-- <div class="container-full">	 -->
+		<!-- Main content -->
+	<section class="content">	
+		<div class="row">			  
+			<div class="col-12">
+				<div class="box">
+					<div class="box-header">
+					<button type="button" class="btn btn-outline-dark pull-right  col-2" onclick="history.back()" >Back</button>						
+						<h4 class="box-title"> Last Visit Information </h4>
+					</div>
+					<div class="box-body">
+						<form method="post" name="frm" id="PatientsDocUpload" action="/md/md.PatientVisit" onsubmit="return Validate();">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<label> MRN</label>
+										<input type="text" class="form-control" name="MRN" id="MRN" value="@@MRN@@" readonly>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label> Patient Name</label>
+										<input type="text" class="form-control" name="PatientName" id="PatientName" value="@@PatientName@@" readonly>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label> Patient DOB</label>
+										<input type="text" class="form-control" name="PatientDOB" id="PatientDOB" value="@@DOB@@" readonly>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label> Patient Phone Number</label>
+										<input type="text" class="form-control" name="PhNumber" id="PhNumber" value="@@PhNumber@@" readonly>
+									</div>
+								</div>								
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label> Last Reason Visit</label>
+										<input type="text" class="form-control" name="LastReasonVisit" id="LastReasonVisit" value="@@LastReasonVisit@@" readonly>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label> Last Date of Service</label>
+										<input type="text" class="form-control" name="LastDateofService" id="LastDateofService" value="@@LastDateofService@@" readonly>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label> Last Doctors Name</label>
+										<input type="text" class="form-control" name="LastDoctorName" id="LastDoctorName" value="@@LastDoctorName@@" readonly>
+									</div>
+								</div>								
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label> Last Visit Number</label>
+										<input type="text" class="form-control" name="LastVisitNumber" id="LastVisitNumber" value="@@MaxVisitNumber@@" readonly>
+									</div>
+								</div>		
+								<input type="hidden" name="PatientRegId" id="PatientRegId" value="@@PatientRegId@@" >
+							</div>
+							<div class="row">
+								<h4 class="box-title"> Add New Visit Information </h4>
+							</div>
+							
+							<div class="row">																
+								<div class="col-md-3" id="ReasonVisitDropDown">
+									<label><font color="black">Reason For Visit * </font></label>
+									@@ReasonVisitSelector@@
+								</div>	
+								<div class="col-md-3" id="ReasonVisitDiv">
+									
+								</div>	
+								<div class="col-md-3" id="RVDIV_FR" style="display:none">
+									
+										<label><font color="black">Reason For Visit * </font></label>
+										<input type="text" 
+										class="form-control mixed" id="ReasonVisitFr" name="ReasonVisitFr">
+									
+								</div>													
+							</div>
+							<br> 
+							<div class="row">																
+								<div class="col-md-3">
+									<div class="form-group">
+										<label> New Date of Service *</label>
+										<input type="datetime-local"  class="form-control" id="NewDateofService" name="NewDateofService" required>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label>New Doctors Name </label>
+										<select class="form-control select2" id="NewDoctorId" name="NewDoctorId">
+											@@DoctorList@@
+										</select>
+									</div>
+								</div>								
+							</div>						
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input name="UserId" id="UserId" type="hidden" value="@@UserId@@">
+										<input name="ActionID"  type="hidden" value="SaveVisit">
+										<input name="ClientId" id="ClientId" type="hidden" value="@@ClientId@@">
+										<input type="hidden" name="RequestType" id="RequestType" value="@@RequestType@@">
+										
+										<!-- <a href="/md/md.RegisteredPatients?ActionID=ViewDocuments&PatientId="+PatientId role="menuitem">Next</a> -->
+										<button type="submit" class="btn btn-primary" name="ActionID" id="ActionID" value="SaveVisit"><font color="white">Save Data</font></button>
+									</div>
+								</div>
+							</div>
+
+						</form>					
+					</div>
+				</div>
+			</div>			
+			<!-- /.col -->
+		</div>
+		  <!-- /.row -->
+	</section>
+		<!-- /.content -->
+	  
+	  <!-- </div> -->
+  <!-- </div> -->
+  <!-- /.content-wrapper -->    
+</div>
+<!-- ./wrapper -->
+
+	<!-- Vendor JS -->
+	<script src="/orange/main/js/vendors.min.js"></script>
+    <script src="/orange/assets/icons/feather-icons/feather.min.js"></script>	
+	<script src="/orange/assets/vendor_components/datatable/datatables.min.js"></script>
+	<script src="/orange/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+	<script src="/orange/assets/vendor_components/select2/dist/js/select2.full.js"></script>
+	
+	<!-- Florence Admin App -->
+	<script src="/orange/main/js/template.js"></script>
+	<script src="/orange/main/js/demo.js"></script>
+	<script src="/orange/main/js/pages/data-table.js"></script>
+	<script src="/orange/main/js/pages/advanced-form-element.js"></script>
+	
+<script>
+function AddReasonVisitDropDown(){
+	// debugger
+		// var d = new Date();
+		// var DOBValidatorChk = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+		// $("#NewDateofService").attr("max",DOBValidatorChk);
+		
+	var ClientIndex = document.getElementById("ClientId").value;
+	if(ClientIndex == 9 || ClientIndex == 28){
+		// document.getElementById("ReasonVisitDropDown").innerHTML = "<label>New Reason For Visit</label><select class=\"form-control\" id=\"ReasonVisitSelect\" name=\"ReasonVisitSelect\" onchange=\"DisplayReasonVisitField(this.value);\" required> <option value=\"\">Select Reason of Visit</option><option value=\"COVID\">COVID Testing</option><option value=\"Others\">Others</option></select>";
+	}else if (ClientIndex == 39 || ClientIndex == 40){
+		// document.getElementById("ReasonVisitDropDown").innerHTML = "<label>New Reason For Visit </label><select class=\"form-control\" id=\"ReasonVisitSelect\" name=\"ReasonVisitSelect\" onchange=\"DisplayReasonVisitField(this.value);\" required><option value=\"\">Select Reason of Visit</option><option value=\"Others\">Emergency</option><option value=\"COVID\">COVID-19</option><option id=\"sportsphysical \" value=\"Sports Physical\">Sports Physical</option><option id=\"occmed\" value=\"Occmed\" style=\"display: block;\">Occmed</option><option id=\"BBH\" value=\"BBH\">BBH</option></select>";
+	}
+	else{
+	// document.getElementById("ReasonVisitDropDown").innerHTML = "<label>New Reason For Visit </label><select class=\"form-control\" id=\"ReasonVisitSelect\" name=\"ReasonVisitSelect\" onchange=\"DisplayReasonVisitField(this.value);\" required><option value=\"\">Select Reason of Visit</option><option value=\"Others\">Emergency</option><option value=\"COVID\">COVID-19</option></select>";
+	}
+
+
+}
+function DisplayReasonVisitField(str){
+	var ClientIndex = document.getElementById("ClientId").value;
+	if(ClientIndex == 9 || ClientIndex == 28){
+		if (str != "COVID") {
+			document.getElementById("ReasonVisitDiv").innerHTML = "<label> New Reason Visit</label><input type=\"text\"  class=\"form-control\" id=\"ReasonVisit\" name=\"ReasonVisit\" required>";		
+		}else if (str == "COVID"){
+			document.getElementById("ReasonVisitDiv").innerHTML = "<label> New Reason Visit</label><input type=\"text\"  class=\"form-control\" id=\"ReasonVisit\" name=\"ReasonVisit\" value=\"COVID Testing\" readonly>";		
+		}
+	}else {
+		var xmlhttp;
+		if (window.XMLHttpRequest) {
+			xmlhttp = new XMLHttpRequest();
+		}
+		else {
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				var mySplitResult = xmlhttp.responseText;
+				//document.getElementById("ReasonVisitDiv").style.display = "block";
+				document.getElementById("ReasonVisitDiv").innerHTML = mySplitResult;
+				document.getElementById("ReasonVisit").required=true;
+				if (ClientIndex == 27 || ClientIndex == 29) {
+				
+				
+				if(str == 'COVID' || str == 'Others'){
+					$("#ReasonVisitDiv").show();
+					$("#ReasonVisit").attr("required",true);
+					$("#ReasonVisit").attr('name','ReasonVisit');
+
+					$("#ReasonVisitFr").attr('name','');
+					$("#ReasonVisitFr").attr("required",false);
+					$("#RVDIV_FR").hide();
+				}else{
+					$("#ReasonVisit").attr("required",false);
+					$("#ReasonVisit").attr('name','');
+					$("#ReasonVisitDiv").hide();
+
+					$("#RVDIV_FR").show();
+					$("#ReasonVisitFr").attr("required",true);
+					$("#ReasonVisitFr").attr('name','ReasonVisit');
+				}
+			}
+				if(ClientIndex == 39 || ClientIndex == 40){
+		// if(str == "Sports Physical"){
+		
+			// document.getElementById("ReasonVisit").value = "Sports Physical";
+			// document.getElementById("ReasonVisitDiv").style.display = "none";
+
+		// }
+
+	}
+			}
+		}
+		xmlhttp.open("POST", "/md/md.PatientVisit?ActionID=ReasonVisits&ClientIndex=" + ClientIndex+"&ReasonVisitSelect="+str, true);
+		console.log("/md/md.PatientVisit?ActionID=ReasonVisits&ClientIndex=" + ClientIndex+"&ReasonVisitSelect="+str);
+		xmlhttp.send();
+	}
+	
+	<!-- if(str == "Others"){ -->
+		<!-- document.getElementById("ReasonVisitDiv").style.display = "block"; -->
+		<!-- document.getElementById("ReasonVisit").value = ""; -->
+		<!-- document.getElementById("ReasonVisit").readOnly = false;	 -->
+		<!-- document.getElementById("ReasonVisit").required=true; -->
+		
+	<!-- }else if(str == "COVID"){ -->
+		<!-- document.getElementById("ReasonVisitDiv").style.display = "block"; -->
+		<!-- document.getElementById("ReasonVisit").value = "COVID-19"; -->
+		<!-- document.getElementById("ReasonVisit").readOnly = true; -->
+	<!-- } -->
+	
+	
+}
+
+function Validate(){
+	var NewDateofService = document.getElementById("NewDateofService").value; 
+	var ReasonVisitSelect = document.getElementById("ReasonVisitSelect").value; 
+	var ReasonVisit = document.getElementsByName("ReasonVisit").value; 
+	var NewDoctorId = document.getElementById("NewDoctorId").value; 
+	
+	if(ReasonVisitSelect == ""){
+		alert("Please Select Reason Of visit");
+		return false;
+	}
+	if(ReasonVisit == ""){
+		alert("Please Enter Reason Of visit");
+		return false;
+	}
+	if(NewDateofService == ""){
+		alert("Please Enter  Date of Service");
+		return false;
+	}
+	if(NewDoctorId == "-1"){
+		alert("Please Select Doctor");
+		return false;
+	}
+
+	document.getElementById("ActionID").disabled=true; 
+	
+}
+</script>
+
+
+</body>
+</html>
